@@ -25,6 +25,7 @@ export function WordSpace2D({
   const [tempPosition, setTempPosition] = useState<{ x: number; y: number } | null>(null);
   const [betweenWords, setBetweenWords] = useState<WordEmbedding[]>([]);
   const [viewBox, setViewBox] = useState('0 0 500 500');
+  const [zoomScale, setZoomScale] = useState(1);
   const { playClick, playHover } = useSound();
   
   // Calculate words between guess and target after guess is made
@@ -45,9 +46,14 @@ export function WordSpace2D({
       const height = bottomRight.y - topLeft.y;
       const newViewBox = `${topLeft.x} ${topLeft.y} ${width} ${height}`;
       
-      // Animate to new viewBox after a delay
+      // Calculate zoom scale for sizing elements
+      const originalArea = 500 * 500;
+      const newArea = width * height;
+      const scale = Math.sqrt(originalArea / newArea);
+      
+      // Start smooth zoom animation
       setTimeout(() => {
-        setViewBox(newViewBox);
+        animateViewBox('0 0 500 500', newViewBox, scale);
       }, 1000);
     }
   }, [showTarget, userGuess, targetWord]);
@@ -56,9 +62,50 @@ export function WordSpace2D({
   useEffect(() => {
     if (!showTarget) {
       setViewBox('0 0 500 500');
+      setZoomScale(1);
       setBetweenWords([]);
     }
   }, [showTarget]);
+  
+  // Smooth viewBox animation function
+  const animateViewBox = (fromViewBox: string, toViewBox: string, finalScale: number) => {
+    const parseViewBox = (vb: string) => {
+      const [x, y, w, h] = vb.split(' ').map(Number);
+      return { x, y, width: w, height: h };
+    };
+    
+    const from = parseViewBox(fromViewBox);
+    const to = parseViewBox(toViewBox);
+    
+    let progress = 0;
+    const duration = 2000; // 2 seconds for smooth animation
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const eased = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+      
+      const current = {
+        x: from.x + (to.x - from.x) * eased,
+        y: from.y + (to.y - from.y) * eased,
+        width: from.width + (to.width - from.width) * eased,
+        height: from.height + (to.height - from.height) * eased
+      };
+      
+      const currentScale = 1 + (finalScale - 1) * eased;
+      setZoomScale(currentScale);
+      setViewBox(`${current.x} ${current.y} ${current.width} ${current.height}`);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  };
 
   // Convert 3D to 2D coordinates (using x and y, ignoring z)
   const to2D = (pos: { x: number; y: number; z: number }) => ({
@@ -169,15 +216,16 @@ export function WordSpace2D({
               <circle
                 cx={pos.x}
                 cy={pos.y}
-                r={isHovered ? 8 : 6}
+                r={(isHovered ? 8 : 6) / zoomScale}
                 className="fill-primary/80 stroke-primary transition-all duration-200"
-                strokeWidth="2"
+                strokeWidth={2 / zoomScale}
               />
               <text
                 x={pos.x}
-                y={pos.y - 12}
+                y={pos.y - 12 / zoomScale}
                 textAnchor="middle"
-                className="fill-foreground text-sm font-medium select-none"
+                className="fill-foreground font-medium select-none"
+                fontSize={14 / zoomScale}
               >
                 {word.word}
               </text>
@@ -191,15 +239,16 @@ export function WordSpace2D({
             <circle
               cx={to2D(userGuess).x}
               cy={to2D(userGuess).y}
-              r="8"
+              r={8 / zoomScale}
               className="fill-destructive/80 stroke-destructive"
-              strokeWidth="3"
+              strokeWidth={3 / zoomScale}
             />
             <text
               x={to2D(userGuess).x}
-              y={to2D(userGuess).y - 12}
+              y={to2D(userGuess).y - 12 / zoomScale}
               textAnchor="middle"
-              className="fill-foreground text-sm font-semibold select-none"
+              className="fill-foreground font-semibold select-none"
+              fontSize={14 / zoomScale}
             >
               Your Guess
             </text>
@@ -212,15 +261,16 @@ export function WordSpace2D({
             <circle
               cx={to2D(targetWord.position).x}
               cy={to2D(targetWord.position).y}
-              r="8"
+              r={8 / zoomScale}
               className="fill-green-500/80 stroke-green-500"
-              strokeWidth="3"
+              strokeWidth={3 / zoomScale}
             />
             <text
               x={to2D(targetWord.position).x}
-              y={to2D(targetWord.position).y - 12}
+              y={to2D(targetWord.position).y - 12 / zoomScale}
               textAnchor="middle"
-              className="fill-foreground text-sm font-semibold select-none"
+              className="fill-foreground font-semibold select-none"
+              fontSize={14 / zoomScale}
             >
               {targetWord.word}
             </text>
@@ -235,8 +285,8 @@ export function WordSpace2D({
             x2={to2D(targetWord.position).x}
             y2={to2D(targetWord.position).y}
             stroke="currentColor"
-            strokeWidth="2"
-            strokeDasharray="5,5"
+            strokeWidth={2 / zoomScale}
+            strokeDasharray={`${5 / zoomScale},${5 / zoomScale}`}
             className="text-destructive/60 animate-in fade-in-0 duration-700 delay-500"
           />
         )}
@@ -254,15 +304,16 @@ export function WordSpace2D({
               <circle
                 cx={pos.x}
                 cy={pos.y}
-                r="6"
+                r={4 / zoomScale}
                 className="fill-yellow-500/80 stroke-yellow-500"
-                strokeWidth="2"
+                strokeWidth={1.5 / zoomScale}
               />
               <text
                 x={pos.x}
-                y={pos.y - 10}
+                y={pos.y - 8 / zoomScale}
                 textAnchor="middle"
-                className="fill-foreground text-xs font-medium select-none"
+                className="fill-foreground font-medium select-none"
+                fontSize={12 / zoomScale}
               >
                 {word.word}
               </text>
@@ -276,9 +327,9 @@ export function WordSpace2D({
             <circle
               cx={tempPosition.x}
               cy={tempPosition.y}
-              r="8"
+              r={8 / zoomScale}
               className="fill-orange-500/50 stroke-orange-500"
-              strokeWidth="2"
+              strokeWidth={2 / zoomScale}
             />
           </g>
         )}
