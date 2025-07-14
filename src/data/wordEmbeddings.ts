@@ -1,4 +1,4 @@
-import { WordEmbedding } from '../types';
+import type { WordEmbedding } from '../types';
 
 // Pre-computed word embeddings with semantic clustering
 // Words are positioned so that semantically similar words are closer together

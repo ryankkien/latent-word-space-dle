@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { WordSpace3D } from './WordSpace3D';
-import { GameState, WordEmbedding } from '../types';
+import type { GameState } from '../types';
 import { selectTargetWord, selectReferenceWords } from '../utils/gameLogic';
 import { countWordsBetween, calculateDistance } from '../data/wordEmbeddings';
 

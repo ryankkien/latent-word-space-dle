@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text, Sphere, Line } from '@react-three/drei';
 import { Vector3 } from 'three';
-import { WordEmbedding } from '../types';
+import type { WordEmbedding } from '../types';
 
 interface WordSpace3DProps {
   referenceWords: WordEmbedding[];
@@ -115,7 +115,7 @@ export function WordSpace3D({
         />
         
         {/* Reference words */}
-        {referenceWords.map((word, index) => (
+        {referenceWords.map((word) => (
           <Word
             key={word.word}
             word={word.word}

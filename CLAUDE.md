@@ -4,48 +4,69 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a word game project called "latent-word-space-dle" that appears to be inspired by Wordle but incorporating latent word spaces (word embeddings or similar NLP concepts).
+This is a 3D word placement game where users guess the position of a word in latent word space. Players are given 5 reference words and must place a target word in 3D space based on semantic similarity. The game provides feedback on how many words are between the guess and the actual position.
 
 ## Current State
 
-This repository is newly initialized and does not yet have:
-- A defined tech stack
-- Build configuration
-- Source code
-- Tests
-- Documentation
+The project is built with:
+- **Frontend**: React with TypeScript
+- **Build Tool**: Vite
+- **3D Visualization**: React Three Fiber (Three.js)
+- **Word Embeddings**: Pre-computed positions for semantic clustering
+- **Styling**: Custom CSS with responsive design
 
-## Development Guidelines
+## Tech Stack
 
-When setting up or working on this project:
+- React 18 + TypeScript
+- Vite for build tooling
+- @react-three/fiber and @react-three/drei for 3D graphics
+- Pre-computed word embeddings organized by semantic categories
 
-1. **Tech Stack Selection**: Consider the project name suggests a web-based word game with NLP components. Typical choices might include:
-   - Frontend: React, Vue, or vanilla JavaScript with TypeScript
-   - Build tools: Vite, Webpack, or framework-specific tools
-   - NLP/ML: TensorFlow.js, ML5.js, or pre-computed embeddings
-   - Testing: Jest, Vitest, or Playwright for E2E
+## Project Structure
 
-2. **Project Structure**: When implementing, consider organizing code into:
-   - Game logic separate from UI components
-   - Word embedding/NLP utilities in dedicated modules
-   - Reusable UI components if using a framework
+```
+src/
+├── components/
+│   ├── Game.tsx         # Main game component and state management
+│   └── WordSpace3D.tsx  # 3D visualization component
+├── data/
+│   └── wordEmbeddings.ts # Pre-computed word positions and utilities
+├── types/
+│   └── index.ts         # TypeScript interfaces
+├── utils/
+│   └── gameLogic.ts     # Game logic for word selection
+└── App.tsx              # Root component
+```
 
-3. **Key Considerations**:
-   - The game likely needs word embeddings or similarity metrics
-   - Performance is important for client-side ML operations
-   - Game state management will be crucial
-   - Consider accessibility for word games
+## Key Features
+
+- Interactive 3D space with orbit controls
+- Word placement via click interaction
+- Distance-based scoring system
+- Visual feedback with connection lines
+- Semantic clustering of words by category
 
 ## Commands
 
-Once the project is set up, update this section with actual commands for:
-- Installing dependencies
-- Running development server
-- Building for production
-- Running tests
-- Linting and formatting
+```bash
+# Install dependencies
+npm install
 
-Currently no commands are available as the project has not been initialized.always git commit after changes with what you did, and validate your changes, do not add yourself to the git contributors
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Type checking
+npm run tsc
+
+# Linting (if configured)
+npm run lint
+```always git commit after changes with what you did, and validate your changes, do not add yourself to the git contributors
 
  # Using Gemini CLI for Large Codebase Analysis
 
