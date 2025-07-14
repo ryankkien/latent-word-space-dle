@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text, Sphere, Line } from '@react-three/drei';
+import { useState, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Text, Sphere, Line, Float, Trail } from '@react-three/drei';
 import { Vector3 } from 'three';
 import type { WordEmbedding } from '../types';
+import { cn } from '../lib/utils';
+import { Button } from './ui/button';
 
 interface WordSpace3DProps {
   referenceWords: WordEmbedding[];
@@ -12,27 +14,52 @@ interface WordSpace3DProps {
   showTarget: boolean;
 }
 
-function Word({ word, position, color = "blue", size = 0.1 }: { 
+function Word({ word, position, color = "blue", size = 0.1, isTarget = false }: { 
   word: string; 
   position: { x: number; y: number; z: number };
   color?: string;
   size?: number;
+  isTarget?: boolean;
 }) {
+  const meshRef = useRef<any>(null);
+  const [hovered, setHovered] = useState(false);
+
+  useFrame(() => {
+    if (meshRef.current && hovered) {
+      meshRef.current.rotation.y += 0.02;
+    }
+  });
+
   return (
-    <group position={[position.x, position.y, position.z]}>
-      <Sphere args={[size, 16, 16]}>
-        <meshStandardMaterial color={color} />
-      </Sphere>
-      <Text
-        position={[0, 0.2, 0]}
-        fontSize={0.15}
-        color="black"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {word}
-      </Text>
-    </group>
+    <Float speed={isTarget ? 1.5 : 0.8} rotationIntensity={isTarget ? 0.3 : 0.1} floatIntensity={isTarget ? 0.3 : 0.1}>
+      <group position={[position.x, position.y, position.z]}>
+        <Sphere 
+          ref={meshRef}
+          args={[size * (hovered ? 1.2 : 1), 32, 32]}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <meshStandardMaterial 
+            color={color} 
+            emissive={color}
+            emissiveIntensity={hovered ? 0.4 : 0.2}
+            metalness={0.8}
+            roughness={0.2}
+          />
+        </Sphere>
+        <Text
+          position={[0, size + 0.15, 0]}
+          fontSize={0.15}
+          color="white"
+          anchorX="center"
+          anchorY="middle"
+          outlineWidth={0.02}
+          outlineColor="black"
+        >
+          {word}
+        </Text>
+      </group>
+    </Float>
   );
 }
 
@@ -81,10 +108,11 @@ export function WordSpace3D({
   };
 
   return (
-    <div style={{ width: '100%', height: '600px', position: 'relative' }}>
-      <Canvas camera={{ position: [5, 5, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
+    <div className="w-full h-[600px] relative bg-gradient-to-b from-background to-muted/20 rounded-lg overflow-hidden">
+      <Canvas camera={{ position: [5, 5, 5], fov: 50 }} className="bg-transparent">
+        <ambientLight intensity={0.4} />
+        <pointLight position={[10, 10, 10]} intensity={0.8} />
+        <pointLight position={[-10, -10, -10]} intensity={0.4} color="#3b82f6" />
         
         <OrbitControls 
           enablePan={true}
@@ -94,8 +122,11 @@ export function WordSpace3D({
         
         {/* Grid helpers */}
         <gridHelper args={[10, 10]} rotation={[0, 0, 0]} />
-        <gridHelper args={[10, 10]} rotation={[Math.PI / 2, 0, 0]} />
-        <gridHelper args={[10, 10]} rotation={[0, 0, Math.PI / 2]} />
+        <gridHelper args={[10, 10]} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />
+        <gridHelper args={[10, 10]} rotation={[0, 0, Math.PI / 2]} position={[0, 0, 0]} />
+        
+        {/* Ambient particles for atmosphere */}
+        <fog attach="fog" args={['#030712', 10, 30]} />
         
         {/* Axes */}
         <Line
@@ -120,19 +151,27 @@ export function WordSpace3D({
             key={word.word}
             word={word.word}
             position={word.position}
-            color="#4299e1"
+            color="#3b82f6"
             size={0.12}
           />
         ))}
         
         {/* User guess */}
         {userGuess && (
-          <Word
-            word="Your Guess"
-            position={userGuess}
-            color="#f56565"
-            size={0.15}
-          />
+          <Trail
+            width={2}
+            color="#ef4444"
+            length={20}
+            decay={1}
+            attenuation={(t) => t * t}
+          >
+            <Word
+              word="Your Guess"
+              position={userGuess}
+              color="#ef4444"
+              size={0.15}
+            />
+          </Trail>
         )}
         
         {/* Target word (shown after guess) */}
@@ -140,8 +179,9 @@ export function WordSpace3D({
           <Word
             word={targetWord.word}
             position={targetWord.position}
-            color="#48bb78"
-            size={0.15}
+            color="#10b981"
+            size={0.18}
+            isTarget={true}
           />
         )}
         
@@ -152,10 +192,12 @@ export function WordSpace3D({
               [userGuess.x, userGuess.y, userGuess.z],
               [targetWord.position.x, targetWord.position.y, targetWord.position.z]
             ]}
-            color="#e53e3e"
-            lineWidth={2}
+            color="#ef4444"
+            lineWidth={3}
             dashed
-            dashScale={0.1}
+            dashScale={5}
+            dashSize={0.1}
+            gapSize={0.1}
           />
         )}
         
@@ -182,24 +224,17 @@ export function WordSpace3D({
       </Canvas>
       
       {!userGuess && (
-        <button
-          style={{
-            position: 'absolute',
-            bottom: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: '10px 20px',
-            backgroundColor: placementMode ? '#e53e3e' : '#4299e1',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '16px'
-          }}
+        <Button
           onClick={() => setPlacementMode(!placementMode)}
+          className={cn(
+            "absolute bottom-4 left-1/2 transform -translate-x-1/2",
+            "transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5",
+            placementMode && "bg-orange-500 hover:bg-orange-600"
+          )}
+          size="lg"
         >
           {placementMode ? 'Click in space to place word' : 'Start Placing Word'}
-        </button>
+        </Button>
       )}
     </div>
   );

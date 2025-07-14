@@ -1,11 +1,12 @@
 import './App.css'
 import { Game } from './components/Game'
+import { ThemeProvider } from './hooks/useTheme'
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider defaultTheme="dark">
       <Game />
-    </div>
+    </ThemeProvider>
   )
 }
 

@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
 import { WordSpace3D } from './WordSpace3D';
+import { WordSpace2D } from './WordSpace2D';
 import type { GameState } from '../types';
 import { selectTargetWord, selectReferenceWords } from '../utils/gameLogic';
 import { countWordsBetween, calculateDistance } from '../data/wordEmbeddings';
+import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Moon, Sun, Box, Square, Sparkles } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
+import { cn } from '../lib/utils';
+import { useSound } from '../hooks/useSound';
 
 export function Game() {
   const [gameState, setGameState] = useState<GameState>({
@@ -13,6 +20,9 @@ export function Game() {
     score: 0,
     wordsBetween: 0,
   });
+  const [viewMode, setViewMode] = useState<'2D' | '3D'>('3D');
+  const { theme, setTheme } = useTheme();
+  const { playSuccess } = useSound();
 
   // Initialize game
   useEffect(() => {
@@ -50,100 +60,182 @@ export function Game() {
       wordsBetween,
       score,
     });
+    
+    // Play success sound after a short delay
+    setTimeout(() => playSuccess(), 500);
   };
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center',
-      padding: '20px',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <h1 style={{ marginBottom: '10px' }}>Latent Word Space Game</h1>
-      
-      {!gameState.isGameComplete && gameState.targetWord && (
-        <div style={{ 
-          textAlign: 'center', 
-          marginBottom: '20px',
-          padding: '15px',
-          backgroundColor: '#f0f0f0',
-          borderRadius: '10px'
-        }}>
-          <h2 style={{ margin: '0 0 10px 0' }}>
-            Place the word: <span style={{ color: '#48bb78', fontWeight: 'bold' }}>
-              "{gameState.targetWord.word}"
-            </span>
-          </h2>
-          <p style={{ margin: 0, color: '#666' }}>
-            Use the blue reference words to guide your placement
-          </p>
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              Latent Word Space
+            </h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="transition-all duration-200"
+            >
+              {theme === 'dark' ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+            <div className="flex rounded-lg overflow-hidden border">
+              <Button
+                variant={viewMode === '2D' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('2D')}
+                className="rounded-none"
+              >
+                <Square className="h-4 w-4 mr-1" />
+                2D
+              </Button>
+              <Button
+                variant={viewMode === '3D' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('3D')}
+                className="rounded-none"
+              >
+                <Box className="h-4 w-4 mr-1" />
+                3D
+              </Button>
+            </div>
+          </div>
         </div>
-      )}
 
-      <WordSpace3D
-        referenceWords={gameState.referenceWords}
-        targetWord={gameState.targetWord}
-        userGuess={gameState.userGuess}
-        onGuessPlaced={handleGuessPlaced}
-        showTarget={gameState.isGameComplete}
-      />
+        {/* Game Content */}
+        {!gameState.isGameComplete && gameState.targetWord && (
+          <Card className="mb-6 bg-gradient-to-br from-card to-muted/20 border-primary/20">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">
+                Place the word: <span className="text-primary font-bold animate-pulse">
+                  "{gameState.targetWord.word}"
+                </span>
+              </CardTitle>
+              <CardDescription>
+                Use the reference words to guide your placement in {viewMode} space
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        )}
 
-      {gameState.isGameComplete && (
-        <div style={{ 
-          marginTop: '20px',
-          padding: '20px',
-          backgroundColor: '#f9f9f9',
-          borderRadius: '10px',
-          textAlign: 'center',
-          minWidth: '300px'
-        }}>
-          <h2 style={{ color: '#333', marginBottom: '15px' }}>Results</h2>
-          <div style={{ marginBottom: '10px' }}>
-            <strong>Words Between:</strong> {gameState.wordsBetween}
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <strong>Accuracy Score:</strong> {gameState.score}%
-          </div>
-          <div style={{ marginBottom: '20px' }}>
-            <strong>Distance:</strong> {
-              gameState.userGuess && gameState.targetWord
-                ? calculateDistance(gameState.userGuess, gameState.targetWord.position).toFixed(2)
-                : 0
-            } units
-          </div>
-          <button
-            onClick={startNewGame}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#4299e1',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px'
-            }}
-          >
-            Play Again
-          </button>
-        </div>
-      )}
+        {/* Visualization */}
+        <Card className="mb-6 overflow-hidden">
+          <CardContent className="p-0">
+            {viewMode === '3D' ? (
+              <WordSpace3D
+                referenceWords={gameState.referenceWords}
+                targetWord={gameState.targetWord}
+                userGuess={gameState.userGuess}
+                onGuessPlaced={handleGuessPlaced}
+                showTarget={gameState.isGameComplete}
+              />
+            ) : (
+              <WordSpace2D
+                referenceWords={gameState.referenceWords}
+                targetWord={gameState.targetWord}
+                userGuess={gameState.userGuess}
+                onGuessPlaced={handleGuessPlaced}
+                showTarget={gameState.isGameComplete}
+              />
+            )}
+          </CardContent>
+        </Card>
 
-      <div style={{ 
-        marginTop: '20px',
-        padding: '15px',
-        backgroundColor: '#f5f5f5',
-        borderRadius: '10px',
-        maxWidth: '600px'
-      }}>
-        <h3 style={{ marginTop: 0 }}>How to Play</h3>
-        <ul style={{ marginBottom: 0 }}>
-          <li>You need to place a word in 3D space based on its semantic meaning</li>
-          <li>Use the blue reference words to guide your placement</li>
-          <li>Click "Start Placing Word" then click in the 3D space to place your guess</li>
-          <li>The closer you are to the actual position, the higher your score!</li>
-          <li>Rotate the view by dragging, zoom with scroll wheel</li>
-        </ul>
+        {/* Results */}
+        {gameState.isGameComplete && (
+          <Card className={cn(
+            "mb-6 transition-all duration-500",
+            "animate-in fade-in-0 slide-in-from-bottom-4",
+            gameState.score > 80 ? "border-green-500/50 bg-gradient-to-br from-green-500/10 to-card" :
+            gameState.score > 50 ? "border-yellow-500/50 bg-gradient-to-br from-yellow-500/10 to-card" :
+            "border-red-500/50 bg-gradient-to-br from-red-500/10 to-card"
+          )}>
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl">
+                {gameState.score > 80 ? "Excellent!" : 
+                 gameState.score > 50 ? "Good Job!" : 
+                 "Nice Try!"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-3 gap-4 text-center mb-6">
+                <div className="space-y-2">
+                  <div className="text-4xl font-bold text-primary">
+                    {gameState.wordsBetween}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Words Between</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-4xl font-bold text-primary">
+                    {gameState.score}%
+                  </div>
+                  <div className="text-sm text-muted-foreground">Accuracy</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-4xl font-bold text-primary">
+                    {gameState.userGuess && gameState.targetWord
+                      ? calculateDistance(gameState.userGuess, gameState.targetWord.position).toFixed(1)
+                      : 0}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Distance</div>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  onClick={startNewGame}
+                  size="lg"
+                  className="transition-all duration-200 hover:scale-105"
+                >
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Play Again
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Instructions */}
+        <Card>
+          <CardHeader>
+            <CardTitle>How to Play</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                Place a word in {viewMode} space based on its semantic meaning
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                Use the reference words to guide your placement
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                Click "Start Placing Word" then click in the space to place your guess
+              </li>
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span>
+                The closer you are to the actual position, the higher your score!
+              </li>
+              {viewMode === '3D' && (
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">•</span>
+                  Rotate the view by dragging, zoom with scroll wheel
+                </li>
+              )}
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

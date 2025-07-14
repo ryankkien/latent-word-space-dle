@@ -66,6 +66,7 @@ npm run tsc
 
 # Linting (if configured)
 npm run lint
+
 ```always git commit after changes with what you did, and validate your changes, do not add yourself to the git contributors
 
  # Using Gemini CLI for Large Codebase Analysis
