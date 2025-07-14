@@ -1,11 +1,11 @@
 import type { WordEmbedding } from '../types';
-import { wordEmbeddings, calculateDistance } from '../data/wordEmbeddings';
+import { wordEmbeddings, calculateDistance } from '../data/realWordEmbeddings';
 
 // Get words that lie between two positions
 export function getWordsBetween(
   pos1: { x: number; y: number; z: number },
   pos2: { x: number; y: number; z: number },
-  maxWords: number = 10
+  maxWords: number = 5
 ): WordEmbedding[] {
   const dist1to2 = calculateDistance(pos1, pos2);
   
@@ -56,8 +56,13 @@ export function getWordsBetween(
       };
     })
     .filter(word => word.isBetween && word.distanceToLine < dist1to2 * 0.5) // Within reasonable distance from line
-    .sort((a, b) => a.distToTarget - b.distToTarget)
-    .slice(0, maxWords);
+    .sort((a, b) => a.distToTarget - b.distToTarget);
+  
+  // If we have more than maxWords, randomly select from them
+  if (betweenWords.length > maxWords) {
+    const shuffled = [...betweenWords].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, maxWords);
+  }
   
   return betweenWords;
 }

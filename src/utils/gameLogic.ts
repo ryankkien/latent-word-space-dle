@@ -1,5 +1,5 @@
 import type { WordEmbedding } from '../types';
-import { wordEmbeddings, getWordsByDistance } from '../data/wordEmbeddings';
+import { wordEmbeddings, getWordsByDistance } from '../data/realWordEmbeddings';
 
 // Select reference words with varying distances from the target
 export function selectReferenceWords(targetWord: WordEmbedding, count: number = 5): WordEmbedding[] {

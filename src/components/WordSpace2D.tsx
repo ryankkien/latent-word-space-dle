@@ -31,7 +31,7 @@ export function WordSpace2D({
   // Calculate words between guess and target after guess is made
   useEffect(() => {
     if (showTarget && userGuess && targetWord) {
-      const words = getWordsBetween(userGuess, targetWord.position, 15);
+      const words = getWordsBetween(userGuess, targetWord.position, 5);
       setBetweenWords(words);
       
       // Calculate bounding box for zoom

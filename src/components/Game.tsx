@@ -3,7 +3,7 @@ import { WordSpace3D } from './WordSpace3D';
 import { WordSpace2D } from './WordSpace2D';
 import type { GameState } from '../types';
 import { selectTargetWord, selectReferenceWords } from '../utils/gameLogic';
-import { countWordsBetween, calculateDistance } from '../data/wordEmbeddings';
+import { countWordsBetween, calculateDistance } from '../data/realWordEmbeddings';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Moon, Sun, Box, Square, Sparkles } from 'lucide-react';
