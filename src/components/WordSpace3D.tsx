@@ -1,10 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text, Sphere, Line, Float, Trail } from '@react-three/drei';
 import { Vector3 } from 'three';
 import type { WordEmbedding } from '../types';
 import { cn } from '../lib/utils';
 import { Button } from './ui/button';
+import { getWordsBetween } from '../utils/wordBetween';
+import { CameraController } from './CameraController';
 
 interface WordSpace3DProps {
   referenceWords: WordEmbedding[];
@@ -95,6 +97,18 @@ export function WordSpace3D({
 }: WordSpace3DProps) {
   const [placementMode, setPlacementMode] = useState(false);
   const [tempPosition, setTempPosition] = useState<Vector3 | null>(null);
+  const [betweenWords, setBetweenWords] = useState<WordEmbedding[]>([]);
+  const [zoomToResult, setZoomToResult] = useState(false);
+  
+  // Calculate words between guess and target after guess is made
+  useEffect(() => {
+    if (showTarget && userGuess && targetWord) {
+      const words = getWordsBetween(userGuess, targetWord.position, 15);
+      setBetweenWords(words);
+      // Trigger zoom after a short delay
+      setTimeout(() => setZoomToResult(true), 1000);
+    }
+  }, [showTarget, userGuess, targetWord]);
 
   const handleCanvasClick = (event: any) => {
     if (!placementMode) return;
@@ -113,6 +127,13 @@ export function WordSpace3D({
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
         <pointLight position={[-10, -10, -10]} intensity={0.4} color="#3b82f6" />
+        
+        <CameraController
+          zoomToResult={zoomToResult}
+          userGuess={userGuess}
+          targetWord={targetWord}
+          betweenWords={betweenWords}
+        />
         
         <OrbitControls 
           enablePan={true}
@@ -200,6 +221,43 @@ export function WordSpace3D({
             gapSize={0.1}
           />
         )}
+        
+        {/* Words between guess and target */}
+        {showTarget && betweenWords.map((word) => (
+          <Float
+            key={word.word}
+            speed={0.5}
+            rotationIntensity={0.1}
+            floatIntensity={0.1}
+          >
+            <group 
+              position={[word.position.x, word.position.y, word.position.z]}
+            >
+              <Sphere args={[0.08, 16, 16]}>
+                <meshStandardMaterial 
+                  color="#fbbf24"
+                  emissive="#fbbf24"
+                  emissiveIntensity={0.3}
+                  metalness={0.8}
+                  roughness={0.2}
+                  opacity={0.8}
+                  transparent
+                />
+              </Sphere>
+              <Text
+                position={[0, 0.12, 0]}
+                fontSize={0.12}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                outlineWidth={0.02}
+                outlineColor="black"
+              >
+                {word.word}
+              </Text>
+            </group>
+          </Float>
+        ))}
         
         {/* Placement mode indicator */}
         {placementMode && tempPosition && (

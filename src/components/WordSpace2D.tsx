@@ -53,11 +53,14 @@ export function WordSpace2D({
   const handleSvgMove = (event: React.MouseEvent<SVGSVGElement>) => {
     if (!placementMode || !svgRef.current) return;
 
-    const rect = svgRef.current.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 500;
-    const y = ((event.clientY - rect.top) / rect.height) * 500;
-
-    setTempPosition({ x, y });
+    const pt = svgRef.current.createSVGPoint();
+    pt.x = event.clientX;
+    pt.y = event.clientY;
+    
+    // Transform the point to SVG coordinates
+    const svgP = pt.matrixTransform(svgRef.current.getScreenCTM()?.inverse());
+    
+    setTempPosition({ x: svgP.x, y: svgP.y });
   };
 
   return (
@@ -65,9 +68,11 @@ export function WordSpace2D({
       <svg
         ref={svgRef}
         viewBox="0 0 500 500"
-        className="w-full h-full bg-background border border-border rounded-lg cursor-crosshair transition-all duration-300"
+        className="w-full h-full bg-background border border-border rounded-lg transition-all duration-300"
         onClick={handleSvgClick}
         onMouseMove={handleSvgMove}
+        onMouseLeave={() => setTempPosition(null)}
+        style={{ cursor: placementMode ? 'crosshair' : 'default' }}
       >
         {/* Grid lines */}
         <defs>
