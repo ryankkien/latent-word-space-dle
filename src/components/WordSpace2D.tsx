@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { WordEmbedding } from '../types';
 import { cn } from '../lib/utils';
 import { useSound } from '../hooks/useSound';
+import { getWordsBetween, getBoundingBox } from '../utils/wordBetween';
 
 interface WordSpace2DProps {
   referenceWords: WordEmbedding[];
@@ -22,7 +23,42 @@ export function WordSpace2D({
   const [hoveredWord, setHoveredWord] = useState<string | null>(null);
   const [placementMode, setPlacementMode] = useState(false);
   const [tempPosition, setTempPosition] = useState<{ x: number; y: number } | null>(null);
+  const [betweenWords, setBetweenWords] = useState<WordEmbedding[]>([]);
+  const [viewBox, setViewBox] = useState('0 0 500 500');
   const { playClick, playHover } = useSound();
+  
+  // Calculate words between guess and target after guess is made
+  useEffect(() => {
+    if (showTarget && userGuess && targetWord) {
+      const words = getWordsBetween(userGuess, targetWord.position, 15);
+      setBetweenWords(words);
+      
+      // Calculate bounding box for zoom
+      const positions = [userGuess, targetWord.position, ...words.map(w => w.position)];
+      const box = getBoundingBox(positions);
+      
+      // Convert to 2D coordinates and add padding
+      const topLeft = to2D({ x: box.min.x - 1, y: box.max.y + 1, z: 0 });
+      const bottomRight = to2D({ x: box.max.x + 1, y: box.min.y - 1, z: 0 });
+      
+      const width = bottomRight.x - topLeft.x;
+      const height = bottomRight.y - topLeft.y;
+      const newViewBox = `${topLeft.x} ${topLeft.y} ${width} ${height}`;
+      
+      // Animate to new viewBox after a delay
+      setTimeout(() => {
+        setViewBox(newViewBox);
+      }, 1000);
+    }
+  }, [showTarget, userGuess, targetWord]);
+  
+  // Reset zoom when starting a new game
+  useEffect(() => {
+    if (!showTarget) {
+      setViewBox('0 0 500 500');
+      setBetweenWords([]);
+    }
+  }, [showTarget]);
 
   // Convert 3D to 2D coordinates (using x and y, ignoring z)
   const to2D = (pos: { x: number; y: number; z: number }) => ({
@@ -33,14 +69,17 @@ export function WordSpace2D({
   const handleSvgClick = (event: React.MouseEvent<SVGSVGElement>) => {
     if (!placementMode || !svgRef.current) return;
 
-    const rect = svgRef.current.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 500;
-    const y = ((event.clientY - rect.top) / rect.height) * 500;
+    const pt = svgRef.current.createSVGPoint();
+    pt.x = event.clientX;
+    pt.y = event.clientY;
+    
+    // Transform the point to SVG coordinates
+    const svgP = pt.matrixTransform(svgRef.current.getScreenCTM()?.inverse());
 
     // Convert back to 3D coordinates
     const position = {
-      x: (x / 50) - 5,
-      y: 5 - (y / 50),
+      x: (svgP.x / 50) - 5,
+      y: 5 - (svgP.y / 50),
       z: 0 // Default z to 0 for 2D mode
     };
 
@@ -67,8 +106,8 @@ export function WordSpace2D({
     <div className="w-full h-[600px] relative">
       <svg
         ref={svgRef}
-        viewBox="0 0 500 500"
-        className="w-full h-full bg-background border border-border rounded-lg transition-all duration-300"
+        viewBox={viewBox}
+        className="w-full h-full bg-background border border-border rounded-lg transition-all duration-1000"
         onClick={handleSvgClick}
         onMouseMove={handleSvgMove}
         onMouseLeave={() => setTempPosition(null)}
@@ -201,6 +240,35 @@ export function WordSpace2D({
             className="text-destructive/60 animate-in fade-in-0 duration-700 delay-500"
           />
         )}
+        
+        {/* Words between guess and target */}
+        {showTarget && betweenWords.map((word, index) => {
+          const pos = to2D(word.position);
+          
+          return (
+            <g
+              key={word.word}
+              className="animate-in fade-in-0 zoom-in-95 duration-500"
+              style={{ animationDelay: `${800 + index * 100}ms` }}
+            >
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r="6"
+                className="fill-yellow-500/80 stroke-yellow-500"
+                strokeWidth="2"
+              />
+              <text
+                x={pos.x}
+                y={pos.y - 10}
+                textAnchor="middle"
+                className="fill-foreground text-xs font-medium select-none"
+              >
+                {word.word}
+              </text>
+            </g>
+          );
+        })}
 
         {/* Placement preview */}
         {placementMode && tempPosition && (
