@@ -1,10 +1,10 @@
 import type { WordEmbedding } from '../types';
-import { wordEmbeddings, getWordsByDistance } from '../data/realWordEmbeddings';
+import { getWordEmbeddings, getWordsByDistance } from '../data/realWordEmbeddings';
 
 // Select reference words with varying distances from the target
-export function selectReferenceWords(targetWord: WordEmbedding, count: number = 5): WordEmbedding[] {
-  const sortedWords = getWordsByDistance(targetWord.position)
-    .filter(w => w.word !== targetWord.word);
+export async function selectReferenceWords(targetWord: WordEmbedding, count: number = 5): Promise<WordEmbedding[]> {
+  const sortedWords = await getWordsByDistance(targetWord.position);
+  const filtered = sortedWords.filter((w: WordEmbedding) => w.word !== targetWord.word);
   
   const referenceWords: WordEmbedding[] = [];
   
@@ -19,11 +19,11 @@ export function selectReferenceWords(targetWord: WordEmbedding, count: number = 
   ];
   
   // Normalize distances to 0-1 range
-  const maxDistance = sortedWords[sortedWords.length - 1].distance;
+  const maxDistance = filtered[filtered.length - 1].distance;
   
   for (let i = 0; i < count && i < ranges.length; i++) {
     const range = ranges[i];
-    const wordsInRange = sortedWords.filter(w => {
+    const wordsInRange = filtered.filter((w: any) => {
       const normalizedDistance = w.distance / maxDistance;
       return normalizedDistance >= range.min && normalizedDistance <= range.max;
     });
@@ -36,8 +36,8 @@ export function selectReferenceWords(targetWord: WordEmbedding, count: number = 
   
   // If we couldn't get enough words with the range strategy, fill with random words
   while (referenceWords.length < count) {
-    const remainingWords = sortedWords.filter(
-      w => !referenceWords.some(ref => ref.word === w.word)
+    const remainingWords = filtered.filter(
+      (w: any) => !referenceWords.some(ref => ref.word === w.word)
     );
     if (remainingWords.length === 0) break;
     
@@ -49,9 +49,10 @@ export function selectReferenceWords(targetWord: WordEmbedding, count: number = 
 }
 
 // Select a target word, preferably not from the same category as recent games
-export function selectTargetWord(recentWords: string[] = []): WordEmbedding {
+export async function selectTargetWord(recentWords: string[] = []): Promise<WordEmbedding> {
+  const wordEmbeddings = await getWordEmbeddings();
   const availableWords = wordEmbeddings.filter(
-    w => !recentWords.includes(w.word)
+    (w: WordEmbedding) => !recentWords.includes(w.word)
   );
   
   if (availableWords.length === 0) {

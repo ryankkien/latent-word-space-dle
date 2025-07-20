@@ -1,19 +1,20 @@
 import type { WordEmbedding } from '../types';
-import { wordEmbeddings, calculateDistance } from '../data/realWordEmbeddings';
+import { getWordEmbeddings, calculateDistance } from '../data/realWordEmbeddings';
 
 // Get words that lie between two positions
-export function getWordsBetween(
+export async function getWordsBetween(
   pos1: { x: number; y: number; z: number },
   pos2: { x: number; y: number; z: number },
   maxWords: number = 5
-): WordEmbedding[] {
+): Promise<WordEmbedding[]> {
+  const wordEmbeddings = await getWordEmbeddings();
   const dist1to2 = calculateDistance(pos1, pos2);
   
   // Find words that are:
   // 1. Closer to pos2 than pos1 is
   // 2. Within a reasonable distance from the line between pos1 and pos2
   const betweenWords = wordEmbeddings
-    .map(word => {
+    .map((word: WordEmbedding) => {
       const distToPos1 = calculateDistance(word.position, pos1);
       const distToPos2 = calculateDistance(word.position, pos2);
       
@@ -55,8 +56,8 @@ export function getWordsBetween(
         t // Position along the line (0 = pos1, 1 = pos2)
       };
     })
-    .filter(word => word.isBetween && word.distanceToLine < dist1to2 * 0.5) // Within reasonable distance from line
-    .sort((a, b) => a.distToTarget - b.distToTarget);
+    .filter((word: any) => word.isBetween && word.distanceToLine < dist1to2 * 0.5) // Within reasonable distance from line
+    .sort((a: any, b: any) => a.distToTarget - b.distToTarget);
   
   // If we have more than maxWords, randomly select from them
   if (betweenWords.length > maxWords) {

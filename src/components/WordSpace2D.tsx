@@ -8,7 +8,7 @@ interface WordSpace2DProps {
   referenceWords: WordEmbedding[];
   targetWord: WordEmbedding | null;
   userGuess: { x: number; y: number; z: number } | null;
-  onGuessPlaced: (position: { x: number; y: number; z: number }) => void;
+  onGuessPlaced: (position: { x: number; y: number; z: number }) => void | Promise<void>;
   showTarget: boolean;
 }
 
@@ -30,18 +30,19 @@ export function WordSpace2D({
   // Calculate words between guess and target after guess is made
   useEffect(() => {
     if (showTarget && userGuess && targetWord) {
-      const words = getWordsBetween(userGuess, targetWord.position, 5);
-      setBetweenWords(words);
-      
-      // Calculate zoom area and trigger zoom animation
-      setTimeout(() => {
-        const focusArea = calculateFocusArea(userGuess, targetWord, words);
-        if (focusArea) {
-          const zoomViewBox = `${focusArea.x} ${focusArea.y} ${focusArea.width} ${focusArea.height}`;
-          setViewBox(zoomViewBox);
-          setIsZoomed(true);
-        }
-      }, 1000);
+      getWordsBetween(userGuess, targetWord.position, 5).then(words => {
+        setBetweenWords(words);
+        
+        // Calculate zoom area and trigger zoom animation
+        setTimeout(() => {
+          const focusArea = calculateFocusArea(userGuess, targetWord, words);
+          if (focusArea) {
+            const zoomViewBox = `${focusArea.x} ${focusArea.y} ${focusArea.width} ${focusArea.height}`;
+            setViewBox(zoomViewBox);
+            setIsZoomed(true);
+          }
+        }, 1000);
+      });
     }
   }, [showTarget, userGuess, targetWord]);
 

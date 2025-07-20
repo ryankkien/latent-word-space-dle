@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { WordSpace2D } from './WordSpace2D';
 import type { DailyGameState, PuzzleGameState, DailyPuzzleSet, PuzzleResult } from '../types';
-import { wordEmbeddings, countWordsBetween, calculateDistance } from '../data/realWordEmbeddings';
+import { findWordEmbedding, countWordsBetween, calculateDistance, initializeForDailyPuzzles, calculateDistanceSync } from '../data/realWordEmbeddings';
 import { dailyPuzzleManager } from '../services/dailyPuzzles';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
@@ -30,6 +30,7 @@ export function DailyGame() {
   const { theme, setTheme } = useTheme();
   const { playSuccess, playClick } = useSound();
 
+
   // Load today's puzzles and daily state
   useEffect(() => {
     loadDailyPuzzles();
@@ -41,6 +42,9 @@ export function DailyGame() {
     try {
       const puzzles = await dailyPuzzleManager.getTodaysPuzzles();
       setPuzzleSet(puzzles);
+      
+      // Initialize embeddings with only required words for better performance
+      await initializeForDailyPuzzles(puzzles);
     } catch (error) {
       console.error('Error loading daily puzzles:', error);
     } finally {
@@ -107,20 +111,36 @@ export function DailyGame() {
     }));
   };
 
-  const setupCurrentPuzzle = (puzzleIndex: number) => {
+  const setupCurrentPuzzle = async (puzzleIndex: number) => {
     if (!puzzleSet || puzzleIndex >= puzzleSet.puzzles.length) return;
     
     const puzzle = puzzleSet.puzzles[puzzleIndex];
     
     // Convert puzzle words to WordEmbedding objects
-    const targetWord = wordEmbeddings.find(w => w.word === puzzle.targetWord);
-    const referenceWords = puzzle.referenceWords
-      .map(word => wordEmbeddings.find(w => w.word === word))
-      .filter(w => w !== undefined);
+    const targetWord = await findWordEmbedding(puzzle.targetWord);
+    const referenceWordPromises = puzzle.referenceWords.map(word => findWordEmbedding(word));
+    const referenceWords = (await Promise.all(referenceWordPromises)).filter(w => w !== undefined);
 
-    if (!targetWord || referenceWords.length === 0) {
-      console.error('Could not find embeddings for puzzle words');
-      return;
+    if (!targetWord || referenceWords.length < 3) {
+      console.error('Could not find enough embeddings for puzzle words');
+      console.error('Target word:', puzzle.targetWord, 'found:', !!targetWord);
+      console.error('Reference words available:', referenceWords.length, 'out of', puzzle.referenceWords.length);
+      
+      // Skip this puzzle if we can't find enough words
+      if (puzzleIndex < 4) {
+        // Try next puzzle
+        await setupCurrentPuzzle(puzzleIndex + 1);
+        return;
+      } else {
+        // This was the last puzzle, show completion
+        const newDailyState = {
+          ...dailyState,
+          isCompleted: true
+        };
+        setDailyState(newDailyState);
+        saveDailyState(newDailyState);
+        return;
+      }
     }
 
     setCurrentGameState({
@@ -142,10 +162,10 @@ export function DailyGame() {
     }
   }, [puzzleSet]);
 
-  const handleGuessPlaced = (position: { x: number; y: number; z: number }) => {
+  const handleGuessPlaced = async (position: { x: number; y: number; z: number }) => {
     if (!currentGameState || currentGameState.isGameComplete) return;
 
-    const wordsBetween = countWordsBetween(position, currentGameState.targetWord.position);
+    const wordsBetween = await countWordsBetween(position, currentGameState.targetWord.position);
     const distance = calculateDistance(position, currentGameState.targetWord.position);
     
     // Score based on accuracy (inverse of distance)
@@ -486,7 +506,7 @@ Can you place words in semantic space?
                 <div>
                   <div className="text-3xl font-bold text-primary">
                     {currentGameState.userGuess 
-                      ? calculateDistance(currentGameState.userGuess, currentGameState.targetWord.position).toFixed(1)
+                      ? calculateDistanceSync(currentGameState.userGuess, currentGameState.targetWord.position).toFixed(1)
                       : 0}
                   </div>
                   <div className="text-sm text-muted-foreground">Distance</div>

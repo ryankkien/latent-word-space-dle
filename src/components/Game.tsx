@@ -29,9 +29,9 @@ export function Game() {
     startNewGame();
   }, []);
 
-  const startNewGame = () => {
-    const target = selectTargetWord();
-    const references = selectReferenceWords(target, 5);
+  const startNewGame = async () => {
+    const target = await selectTargetWord();
+    const references = await selectReferenceWords(target, 5);
     
     setGameState({
       targetWord: target,
@@ -43,10 +43,10 @@ export function Game() {
     });
   };
 
-  const handleGuessPlaced = (position: { x: number; y: number; z: number }) => {
+  const handleGuessPlaced = async (position: { x: number; y: number; z: number }) => {
     if (!gameState.targetWord || gameState.isGameComplete) return;
 
-    const wordsBetween = countWordsBetween(position, gameState.targetWord.position);
+    const wordsBetween = await countWordsBetween(position, gameState.targetWord.position);
     const distance = calculateDistance(position, gameState.targetWord.position);
     
     // Score based on accuracy (inverse of distance)

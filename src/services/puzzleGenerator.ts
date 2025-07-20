@@ -1,5 +1,5 @@
-import OpenAI from 'openai';
-import { wordEmbeddings } from '../data/realWordEmbeddings';
+// import OpenAI from 'openai';
+// import { wordEmbeddings } from '../data/realWordEmbeddings';
 
 export interface DailyPuzzle {
   id: number;
@@ -15,20 +15,25 @@ export interface DailyPuzzleSet {
 }
 
 // Get available words from our embeddings
-const availableWords = wordEmbeddings.map(w => w.word);
+// const availableWords = wordEmbeddings.map(w => w.word);
 
-// Create OpenAI client
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true // Only for development - in production, use a backend
-});
+// Create OpenAI client - COMMENTED OUT to avoid API key requirement
+// const openai = new OpenAI({
+//   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+//   dangerouslyAllowBrowser: true // Only for development - in production, use a backend
+// });
 
 export class PuzzleGenerator {
-  private validateWords(words: string[]): boolean {
-    return words.every(word => availableWords.includes(word));
-  }
+  // private validateWords(words: string[]): boolean {
+  //   return words.every(word => availableWords.includes(word));
+  // }
 
-  private async generateSinglePuzzle(puzzleNumber: number): Promise<DailyPuzzle | null> {
+  private async generateSinglePuzzle(_puzzleNumber: number): Promise<DailyPuzzle | null> {
+    // Frontend puzzle generation disabled - all puzzles are now pre-generated
+    // This method returns null to trigger fallback usage
+    return null;
+    
+    /* COMMENTED OUT - OpenAI puzzle generation
     const difficulties = ['easy', 'medium', 'hard'];
     const difficulty = difficulties[Math.floor(Math.random() * difficulties.length)] as 'easy' | 'medium' | 'hard';
     
@@ -90,6 +95,7 @@ Make the relationships intuitive but not too obvious!`;
       console.error('Error generating puzzle:', error);
       return null;
     }
+    */
   }
 
   private getFallbackPuzzles(): DailyPuzzle[] {

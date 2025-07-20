@@ -103,10 +103,11 @@ export function WordSpace3D({
   // Calculate words between guess and target after guess is made
   useEffect(() => {
     if (showTarget && userGuess && targetWord) {
-      const words = getWordsBetween(userGuess, targetWord.position, 5);
-      setBetweenWords(words);
-      // Trigger zoom after a short delay
-      setTimeout(() => setZoomToResult(true), 1000);
+      getWordsBetween(userGuess, targetWord.position, 5).then(words => {
+        setBetweenWords(words);
+        // Trigger zoom after a short delay
+        setTimeout(() => setZoomToResult(true), 1000);
+      });
     }
   }, [showTarget, userGuess, targetWord]);
 
