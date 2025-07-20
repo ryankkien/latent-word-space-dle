@@ -1,7 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const zlib = require('zlib');
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+import zlib from 'zlib';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const EMBEDDINGS_PATH = path.join(__dirname, '../src/data/glove_embeddings_3d_full.json');
 const EMBEDDINGS_GZ_PATH = path.join(__dirname, '../src/data/glove_embeddings_3d_full.json.gz');
