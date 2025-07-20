@@ -11,10 +11,10 @@ function extractRequiredWords(puzzleSet: DailyPuzzleSet): Set<string> {
   
   puzzleSet.puzzles.forEach(puzzle => {
     // Add target word
-    words.add(puzzle.targetWord);
+    words.add(puzzle.targetWord.word);
     
     // Add all reference words
-    puzzle.referenceWords.forEach(word => words.add(word));
+    puzzle.referenceWords.forEach(ref => words.add(ref.word));
   });
   
   // Add some nearby words for better visualization (optional)

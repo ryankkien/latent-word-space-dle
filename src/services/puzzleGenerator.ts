@@ -1,10 +1,17 @@
 // import OpenAI from 'openai';
 // import { wordEmbeddings } from '../data/realWordEmbeddings';
+import fallbackPuzzleSet from '../data/puzzles/fallback.json';
 
 export interface DailyPuzzle {
   id: number;
-  referenceWords: string[];
-  targetWord: string;
+  referenceWords: {
+    word: string;
+    position: { x: number; y: number; z: number };
+  }[];
+  targetWord: {
+    word: string;
+    position: { x: number; y: number; z: number };
+  };
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
@@ -99,39 +106,8 @@ Make the relationships intuitive but not too obvious!`;
   }
 
   private getFallbackPuzzles(): DailyPuzzle[] {
-    // Fallback puzzles if OpenAI fails
-    return [
-      {
-        id: 1,
-        referenceWords: ["man", "woman", "computer", "king", "prince", "tree", "princess", "royal", "book"],
-        targetWord: "queen",
-        difficulty: "easy"
-      },
-      {
-        id: 2,
-        referenceWords: ["tiny", "car", "small", "medium", "ocean", "large", "huge", "music", "gigantic"],
-        targetWord: "big",
-        difficulty: "easy"
-      },
-      {
-        id: 3,
-        referenceWords: ["calm", "chair", "peaceful", "worried", "mountain", "anxious", "angry", "bread", "furious"],
-        targetWord: "happy",
-        difficulty: "medium"
-      },
-      {
-        id: 4,
-        referenceWords: ["apple", "keyboard", "banana", "orange", "cloud", "grape", "strawberry", "phone", "cherry", "peach"],
-        targetWord: "fruit",
-        difficulty: "medium"
-      },
-      {
-        id: 5,
-        referenceWords: ["past", "window", "present", "yesterday", "guitar", "today", "history", "cheese", "memory", "now"],
-        targetWord: "future",
-        difficulty: "hard"
-      }
-    ];
+    // Use pre-generated puzzles with embedded positions
+    return fallbackPuzzleSet.puzzles as DailyPuzzle[];
   }
 
   async generateDailyPuzzles(date: string): Promise<DailyPuzzleSet> {

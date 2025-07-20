@@ -25,8 +25,14 @@ export interface WordDistance {
 // Daily puzzle types
 export interface DailyPuzzle {
   id: number;
-  referenceWords: string[];
-  targetWord: string;
+  referenceWords: {
+    word: string;
+    position: { x: number; y: number; z: number };
+  }[];
+  targetWord: {
+    word: string;
+    position: { x: number; y: number; z: number };
+  };
   difficulty: 'easy' | 'medium' | 'hard';
 }
 

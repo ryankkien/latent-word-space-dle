@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import type { WordEmbedding } from '../types';
 import { cn } from '../lib/utils';
 import { useSound } from '../hooks/useSound';
-import { getWordsBetween, getBoundingBox } from '../utils/wordBetween';
 
 interface WordSpace2DProps {
   referenceWords: WordEmbedding[];
@@ -22,38 +21,8 @@ export function WordSpace2D({
   const svgRef = useRef<SVGSVGElement>(null);
   const [placementMode, setPlacementMode] = useState(false);
   const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
-  const [betweenWords, setBetweenWords] = useState<WordEmbedding[]>([]);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [viewBox, setViewBox] = useState('0 0 800 600');
   const { playClick, playHover } = useSound();
 
-  // Calculate words between guess and target after guess is made
-  useEffect(() => {
-    if (showTarget && userGuess && targetWord) {
-      getWordsBetween(userGuess, targetWord.position, 5).then(words => {
-        setBetweenWords(words);
-        
-        // Calculate zoom area and trigger zoom animation
-        setTimeout(() => {
-          const focusArea = calculateFocusArea(userGuess, targetWord, words);
-          if (focusArea) {
-            const zoomViewBox = `${focusArea.x} ${focusArea.y} ${focusArea.width} ${focusArea.height}`;
-            setViewBox(zoomViewBox);
-            setIsZoomed(true);
-          }
-        }, 1000);
-      });
-    }
-  }, [showTarget, userGuess, targetWord]);
-
-  // Reset when starting a new game
-  useEffect(() => {
-    if (!showTarget) {
-      setBetweenWords([]);
-      setIsZoomed(false);
-      setViewBox('0 0 800 600');
-    }
-  }, [showTarget]);
 
   // Calculate coordinate ranges dynamically from all words
   const getCoordRanges = () => {
@@ -87,16 +56,6 @@ export function WordSpace2D({
 
   const coordRanges = getCoordRanges();
 
-  // Get scale factor for zoomed elements
-  const getScaleFactor = () => {
-    if (!isZoomed) return 1;
-    const [, , width, height] = viewBox.split(' ').map(Number);
-    const baseArea = 800 * 600;
-    const currentArea = width * height;
-    return Math.sqrt(baseArea / currentArea);
-  };
-
-  const scaleFactor = getScaleFactor();
 
   const to2D = (pos: { x: number; y: number; z: number }) => {
     // Map to 0-800 coordinate space with smaller padding
@@ -169,60 +128,12 @@ export function WordSpace2D({
     }
   };
 
-  // Calculate zoom focus area in SVG coordinates
-  const calculateFocusArea = (userGuess: {x: number, y: number, z: number}, targetWord: WordEmbedding, words: WordEmbedding[]) => {
-    const allPositions = [
-      userGuess,
-      targetWord.position,
-      ...words.map(w => w.position)
-    ];
-    
-    const box = getBoundingBox(allPositions);
-    const padding = 1.5; // Semantic space padding
-    
-    // Convert to SVG coordinates
-    const topLeft = to2D({ x: box.min.x - padding, y: box.max.y + padding, z: 0 });
-    const bottomRight = to2D({ x: box.max.x + padding, y: box.min.y - padding, z: 0 });
-    
-    // Add some visual padding in SVG space
-    const svgPadding = 80;
-    
-    return {
-      x: Math.max(0, topLeft.x - svgPadding),
-      y: Math.max(0, topLeft.y - svgPadding),
-      width: Math.min(800, bottomRight.x - topLeft.x + (svgPadding * 2)),
-      height: Math.min(600, bottomRight.y - topLeft.y + (svgPadding * 2))
-    };
-  };
-
-  // Get focus area for blue box display (different from zoom calculation)
-  const getFocusAreaForDisplay = () => {
-    if (!userGuess || !targetWord || !showTarget) return null;
-    
-    const allPositions = [
-      userGuess,
-      targetWord.position,
-      ...betweenWords.map(w => w.position)
-    ];
-    
-    const box = getBoundingBox(allPositions);
-    const padding = 2;
-    
-    return {
-      minX: box.min.x - padding,
-      maxX: box.max.x + padding,
-      minY: box.min.y - padding,
-      maxY: box.max.y + padding
-    };
-  };
-
-  const focusArea = getFocusAreaForDisplay();
 
   return (
     <div className="w-full h-[600px] relative bg-slate-900 rounded-lg overflow-hidden">
       <svg
         ref={svgRef}
-        viewBox={viewBox}
+        viewBox="0 0 800 600"
         className="w-full h-full transition-all duration-2000 ease-out"
         onClick={handleSvgClick}
         onMouseMove={handleSvgMove}
@@ -240,24 +151,6 @@ export function WordSpace2D({
         </defs>
         <rect width="800" height="600" fill="url(#grid)" />
 
-        {/* Zoom focus overlay */}
-        {isZoomed && focusArea && (
-          <g className="animate-in fade-in-0 duration-1000">
-            {/* Zoom indicator box */}
-            <rect
-              x={to2D({ x: focusArea.minX, y: focusArea.maxY, z: 0 }).x - 20}
-              y={to2D({ x: focusArea.minX, y: focusArea.maxY, z: 0 }).y - 20}
-              width={to2D({ x: focusArea.maxX, y: focusArea.minY, z: 0 }).x - to2D({ x: focusArea.minX, y: focusArea.maxY, z: 0 }).x + 40}
-              height={to2D({ x: focusArea.minX, y: focusArea.minY, z: 0 }).y - to2D({ x: focusArea.minX, y: focusArea.maxY, z: 0 }).y + 40}
-              fill="none"
-              stroke="rgb(59 130 246)"
-              strokeWidth="3"
-              strokeDasharray="10,5"
-              rx="8"
-              className="animate-pulse"
-            />
-          </g>
-        )}
 
         {/* Reference words */}
         {referenceWords.map((word) => {
@@ -273,25 +166,25 @@ export function WordSpace2D({
               <circle
                 cx={pos.x}
                 cy={pos.y}
-                r={8 / scaleFactor}
+                r={8}
                 fill="rgb(59 130 246)"
                 stroke="rgb(37 99 235)"
-                strokeWidth={2 / scaleFactor}
+                strokeWidth={2}
               />
               <rect
-                x={pos.x - (word.word.length * 4) / scaleFactor}
-                y={pos.y - 30 / scaleFactor}
-                width={(word.word.length * 8) / scaleFactor}
-                height={20 / scaleFactor}
+                x={pos.x - (word.word.length * 4)}
+                y={pos.y - 30}
+                width={(word.word.length * 8)}
+                height={20}
                 fill="rgba(0, 0, 0, 0.8)"
-                rx={4 / scaleFactor}
+                rx={4}
               />
               <text
                 x={pos.x}
-                y={pos.y - 16 / scaleFactor}
+                y={pos.y - 16}
                 textAnchor="middle"
                 className="font-semibold select-none pointer-events-none"
-                fontSize={14 / scaleFactor}
+                fontSize={14}
                 fill="white"
               >
                 {word.word}
@@ -306,25 +199,25 @@ export function WordSpace2D({
             <circle
               cx={to2D(userGuess).x}
               cy={to2D(userGuess).y}
-              r={10 / scaleFactor}
+              r={10}
               fill="rgb(239 68 68)"
               stroke="rgb(220 38 38)"
-              strokeWidth={3 / scaleFactor}
+              strokeWidth={3}
             />
             <rect
-              x={to2D(userGuess).x - 40 / scaleFactor}
-              y={to2D(userGuess).y - 35 / scaleFactor}
-              width={80 / scaleFactor}
-              height={20 / scaleFactor}
+              x={to2D(userGuess).x - 40}
+              y={to2D(userGuess).y - 35}
+              width={80}
+              height={20}
               fill="rgba(220, 38, 38, 0.9)"
-              rx={4 / scaleFactor}
+              rx={4}
             />
             <text
               x={to2D(userGuess).x}
-              y={to2D(userGuess).y - 21 / scaleFactor}
+              y={to2D(userGuess).y - 21}
               textAnchor="middle"
               className="font-bold select-none pointer-events-none"
-              fontSize={14 / scaleFactor}
+              fontSize={14}
               fill="white"
             >
               Your Guess
@@ -338,25 +231,25 @@ export function WordSpace2D({
             <circle
               cx={to2D(targetWord.position).x}
               cy={to2D(targetWord.position).y}
-              r={10 / scaleFactor}
+              r={10}
               fill="rgb(34 197 94)"
               stroke="rgb(22 163 74)"
-              strokeWidth={3 / scaleFactor}
+              strokeWidth={3}
             />
             <rect
-              x={to2D(targetWord.position).x - (targetWord.word.length * 5) / scaleFactor}
-              y={to2D(targetWord.position).y - 35 / scaleFactor}
-              width={(targetWord.word.length * 10) / scaleFactor}
-              height={20 / scaleFactor}
+              x={to2D(targetWord.position).x - (targetWord.word.length * 5)}
+              y={to2D(targetWord.position).y - 35}
+              width={(targetWord.word.length * 10)}
+              height={20}
               fill="rgba(22, 163, 74, 0.9)"
-              rx={4 / scaleFactor}
+              rx={4}
             />
             <text
               x={to2D(targetWord.position).x}
-              y={to2D(targetWord.position).y - 21 / scaleFactor}
+              y={to2D(targetWord.position).y - 21}
               textAnchor="middle"
               className="font-bold select-none pointer-events-none"
-              fontSize={16 / scaleFactor}
+              fontSize={16}
               fill="white"
             >
               {targetWord.word}
@@ -372,61 +265,21 @@ export function WordSpace2D({
             x2={to2D(targetWord.position).x}
             y2={to2D(targetWord.position).y}
             stroke="rgb(156 163 175)"
-            strokeWidth={2 / scaleFactor}
-            strokeDasharray={`${8 / scaleFactor},${4 / scaleFactor}`}
+            strokeWidth={2}
+            strokeDasharray={`${8},${4}`}
             className="animate-in fade-in-0 duration-700 delay-500"
           />
         )}
-        
-        {/* Words between */}
-        {showTarget && betweenWords.map((word, index) => {
-          const pos = to2D(word.position);
-          
-          return (
-            <g
-              key={word.word}
-              className="animate-in fade-in-0 zoom-in-95 duration-500"
-              style={{ animationDelay: `${800 + index * 100}ms` }}
-            >
-              <circle
-                cx={pos.x}
-                cy={pos.y}
-                r={6 / scaleFactor}
-                fill="rgb(234 179 8)"
-                stroke="rgb(202 138 4)"
-                strokeWidth={2 / scaleFactor}
-              />
-              <rect
-                x={pos.x - (word.word.length * 3.5) / scaleFactor}
-                y={pos.y - 26 / scaleFactor}
-                width={(word.word.length * 7) / scaleFactor}
-                height={16 / scaleFactor}
-                fill="rgba(202, 138, 4, 0.9)"
-                rx={3 / scaleFactor}
-              />
-              <text
-                x={pos.x}
-                y={pos.y - 16 / scaleFactor}
-                textAnchor="middle"
-                className="font-medium select-none pointer-events-none"
-                fontSize={12 / scaleFactor}
-                fill="white"
-              >
-                {word.word}
-              </text>
-            </g>
-          );
-        })}
 
         {/* Placement preview */}
         {placementMode && cursorPosition && (
           <circle
             cx={cursorPosition.x}
             cy={cursorPosition.y}
-            r={8 / scaleFactor}
+            r={8}
             fill="rgba(249, 115, 22, 0.6)"
             stroke="rgb(249 115 22)"
-            strokeWidth={2 / scaleFactor}
+            strokeWidth={2}
             className="animate-pulse pointer-events-none"
           />
         )}

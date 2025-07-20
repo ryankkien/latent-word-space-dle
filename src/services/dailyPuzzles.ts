@@ -1,5 +1,6 @@
 import { PuzzleGenerator } from './puzzleGenerator';
 import type { DailyPuzzleSet } from './puzzleGenerator';
+import fallbackPuzzleSet from '../data/puzzles/fallback.json';
 
 export class DailyPuzzleManager {
   private puzzleGenerator: PuzzleGenerator;
@@ -82,41 +83,10 @@ export class DailyPuzzleManager {
       
       // Return a fallback puzzle set if generation fails
       return {
+        ...fallbackPuzzleSet,
         date: today,
-        generated_at: new Date().toISOString(),
-        puzzles: [
-          {
-            id: 1,
-            referenceWords: ["man", "woman", "computer", "king", "prince", "tree", "princess", "royal", "book"],
-            targetWord: "queen",
-            difficulty: "easy"
-          },
-          {
-            id: 2,
-            referenceWords: ["tiny", "car", "small", "medium", "ocean", "large", "huge", "music", "gigantic"],
-            targetWord: "big",
-            difficulty: "easy"
-          },
-          {
-            id: 3,
-            referenceWords: ["happy", "table", "sad", "angry", "window", "excited", "calm", "guitar", "joyful", "peaceful"],
-            targetWord: "emotion",
-            difficulty: "medium"
-          },
-          {
-            id: 4,
-            referenceWords: ["cat", "lamp", "dog", "mouse", "paper", "elephant", "bird", "clock", "horse", "cow"],
-            targetWord: "animal",
-            difficulty: "medium"
-          },
-          {
-            id: 5,
-            referenceWords: ["past", "mountain", "present", "yesterday", "coffee", "today", "history", "shoe", "memory", "now"],
-            targetWord: "future",
-            difficulty: "hard"
-          }
-        ]
-      };
+        generated_at: new Date().toISOString()
+      } as DailyPuzzleSet;
     }
   }
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { WordSpace2D } from './WordSpace2D';
-import type { DailyGameState, PuzzleGameState, DailyPuzzleSet, PuzzleResult } from '../types';
-import { findWordEmbedding, countWordsBetween, calculateDistance, initializeForDailyPuzzles, calculateDistanceSync } from '../data/realWordEmbeddings';
+import type { DailyGameState, PuzzleGameState, PuzzleResult } from '../types';
+import type { DailyPuzzleSet } from '../services/puzzleGenerator';
+import { countWordsBetween, calculateDistance, calculateDistanceSync } from '../data/realWordEmbeddings';
 import { dailyPuzzleManager } from '../services/dailyPuzzles';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
@@ -42,9 +43,6 @@ export function DailyGame() {
     try {
       const puzzles = await dailyPuzzleManager.getTodaysPuzzles();
       setPuzzleSet(puzzles);
-      
-      // Initialize embeddings with only required words for better performance
-      await initializeForDailyPuzzles(puzzles);
     } catch (error) {
       console.error('Error loading daily puzzles:', error);
     } finally {
@@ -116,17 +114,23 @@ export function DailyGame() {
     
     const puzzle = puzzleSet.puzzles[puzzleIndex];
     
-    // Convert puzzle words to WordEmbedding objects
-    const targetWord = await findWordEmbedding(puzzle.targetWord);
-    const referenceWordPromises = puzzle.referenceWords.map(word => findWordEmbedding(word));
-    const referenceWords = (await Promise.all(referenceWordPromises)).filter(w => w !== undefined);
+    // Use embedded positions directly from puzzle data
+    const targetWord = {
+      word: puzzle.targetWord.word,
+      position: puzzle.targetWord.position,
+      category: 'target'
+    };
+    
+    const referenceWords = puzzle.referenceWords.map(ref => ({
+      word: ref.word,
+      position: ref.position,
+      category: 'reference'
+    }));
 
-    if (!targetWord || referenceWords.length < 3) {
-      console.error('Could not find enough embeddings for puzzle words');
-      console.error('Target word:', puzzle.targetWord, 'found:', !!targetWord);
-      console.error('Reference words available:', referenceWords.length, 'out of', puzzle.referenceWords.length);
+    if (referenceWords.length < 3) {
+      console.error('Not enough reference words in puzzle:', referenceWords.length);
       
-      // Skip this puzzle if we can't find enough words
+      // Skip this puzzle if we don't have enough words
       if (puzzleIndex < 4) {
         // Try next puzzle
         await setupCurrentPuzzle(puzzleIndex + 1);
