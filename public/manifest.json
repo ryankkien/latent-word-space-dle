@@ -1,6 +1,6 @@
 {
-  "name": "LatentLetters",
-  "short_name": "LatentLetters",
+  "name": "Latent Word Space",
+  "short_name": "LatentWord",
   "description": "Daily word puzzles in semantic space",
   "theme_color": "#1e293b",
   "background_color": "#0f172a",
@@ -8,17 +8,12 @@
   "orientation": "portrait",
   "start_url": "/",
   "scope": "/",
-  "id": "latentletters",
+  "id": "latentwordspace",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 }
