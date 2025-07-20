@@ -15,7 +15,7 @@ if (fs.existsSync(EMBEDDINGS_PATH)) {
 console.log('📥 Embeddings file not found. Downloading from cloud storage...');
 
 // Download from GitHub Releases
-const DOWNLOAD_URL = 'https://github.com/ryankkien/latent-letters/releases/download/v1.0.0/glove_embeddings_3d_full.json.gz';
+const DOWNLOAD_URL = 'https://github.com/ryankkien/latent-word-space-dle/releases/download/v1.0.0/glove_embeddings_3d_full.json.gz';
 
 // For now, we'll create a minimal embeddings file for deployment
 // You'll need to upload the full file to cloud storage and update the URL above
