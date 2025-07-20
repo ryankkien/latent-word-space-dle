@@ -1,6 +1,6 @@
 {
-  "name": "Latent Word Space",
-  "short_name": "LatentWord",
+  "name": "LatentLetters",
+  "short_name": "LatentLetters",
   "description": "Daily word puzzles in semantic space",
   "theme_color": "#1e293b",
   "background_color": "#0f172a",
@@ -8,7 +8,7 @@
   "orientation": "portrait",
   "start_url": "/",
   "scope": "/",
-  "id": "latentwordspace",
+  "id": "latentletters",
   "icons": [
     {
       "src": "/favicon.svg",
