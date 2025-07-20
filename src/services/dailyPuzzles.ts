@@ -1,13 +1,11 @@
-import { PuzzleGenerator } from './puzzleGenerator';
 import type { DailyPuzzleSet } from './puzzleGenerator';
 import fallbackPuzzleSet from '../data/puzzles/fallback.json';
 
 export class DailyPuzzleManager {
-  private puzzleGenerator: PuzzleGenerator;
   private cache: Map<string, DailyPuzzleSet> = new Map();
 
   constructor() {
-    this.puzzleGenerator = new PuzzleGenerator();
+    // No longer need puzzle generator
   }
 
   private getTodayDateString(): string {
@@ -50,17 +48,6 @@ export class DailyPuzzleManager {
     return null;
   }
 
-  private async savePuzzles(puzzleSet: DailyPuzzleSet): Promise<void> {
-    // Save to memory cache
-    this.cache.set(puzzleSet.date, puzzleSet);
-
-    // Save to localStorage (for development)
-    try {
-      localStorage.setItem(`puzzles_${puzzleSet.date}`, JSON.stringify(puzzleSet));
-    } catch (error) {
-      console.error('Error saving puzzles to cache:', error);
-    }
-  }
 
   async getTodaysPuzzles(): Promise<DailyPuzzleSet> {
     const today = this.getTodayDateString();
@@ -68,26 +55,17 @@ export class DailyPuzzleManager {
     // Try to load cached puzzles first
     const cached = await this.loadCachedPuzzles(today);
     if (cached) {
-      console.log(`Loaded cached puzzles for ${today}`);
+      console.log(`Loaded puzzles for ${today}`);
       return cached;
     }
 
-    // Generate new puzzles if not in cache
-    console.log(`Generating new puzzles for ${today}`);
-    try {
-      const puzzleSet = await this.puzzleGenerator.generateDailyPuzzles(today);
-      await this.savePuzzles(puzzleSet);
-      return puzzleSet;
-    } catch (error) {
-      console.error('Error generating puzzles:', error);
-      
-      // Return a fallback puzzle set if generation fails
-      return {
-        ...fallbackPuzzleSet,
-        date: today,
-        generated_at: new Date().toISOString()
-      } as DailyPuzzleSet;
-    }
+    // If no puzzle file exists for today, use fallback
+    console.log(`No puzzles found for ${today}, using fallback`);
+    return {
+      ...fallbackPuzzleSet,
+      date: today,
+      generated_at: new Date().toISOString()
+    } as DailyPuzzleSet;
   }
 
   // Clear cache (useful for development/testing)
@@ -109,9 +87,12 @@ export class DailyPuzzleManager {
       return cached;
     }
 
-    const puzzleSet = await this.puzzleGenerator.generateDailyPuzzles(date);
-    await this.savePuzzles(puzzleSet);
-    return puzzleSet;
+    // If no puzzle file exists for the date, use fallback
+    return {
+      ...fallbackPuzzleSet,
+      date,
+      generated_at: new Date().toISOString()
+    } as DailyPuzzleSet;
   }
 }
 

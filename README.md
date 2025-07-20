@@ -37,9 +37,9 @@ npm run dev
 ## 📦 Deployment
 
 ### Pre-deployment Checklist
-- [ ] Generate puzzles for 60+ days (see GENERATE_PUZZLES_INSTRUCTIONS.md)
-- [ ] Ensure `.env` is in `.gitignore`
-- [ ] Remove API keys from `.env` before committing
+- [ ] Puzzles are pre-generated for 60+ days (already included)
+- [ ] Ensure `.env` is in `.gitignore` (already configured)
+- [ ] No API keys needed for deployment
 - [ ] Handle large embeddings file (see DEPLOYMENT_GUIDE.md)
 
 ### Deploy to Vercel
@@ -91,12 +91,19 @@ latent-letters/
 
 ## 🛠️ Development
 
-### Generate New Puzzles
+### Generate New Puzzles (Optional)
+The repository includes 60+ days of pre-generated puzzles. To generate additional puzzles:
+
 ```bash
-# Add OpenAI API key to .env
+# Set up environment variables
+cp .env.example .env
+# Add your OpenAI API key to .env
+
 # Run generation script
-node scripts/generatePuzzles.mjs
+OPENAI_API_KEY="your-key" node scripts/generateAllPuzzles.js
 ```
+
+**Note**: The website runs perfectly without an API key. Puzzles are pre-generated.
 
 ### Build for Production
 ```bash
