@@ -36,3 +36,5 @@ scripts/glove.6B.100d.txt
 scripts/glove.6B.200d.txt
 scripts/glove.6B.300d.txt
 scripts/glove.6B.50d.txt
+src/data/glove_embeddings_3d_full.json
+src/data/glove_embeddings_3d_full.json.gz
