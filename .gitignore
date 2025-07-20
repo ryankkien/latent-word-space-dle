@@ -31,7 +31,7 @@ src/data/embeddings_with_words.json.gz
 # Python
 __pycache__/
 *.py[cod]
-/scripts
+# Ignore GloVe data files but not scripts
 scripts/glove.6B.100d.txt
 scripts/glove.6B.200d.txt
 scripts/glove.6B.300d.txt

@@ -79,4 +79,3 @@ const decompressFile = (source, destination) => {
     process.exit(1);
   }
 })();
-*/
