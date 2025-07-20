@@ -14,10 +14,13 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const gloveEmbeddingsData = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/data/glove_embeddings_3d.json'), 'utf8'));
 const availableWords = gloveEmbeddingsData.map(embedding => embedding.word);
 
-// Initialize OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.VITE_OPENAI_API_KEY,
-});
+// Initialize OpenAI only if API key is available
+let openai = null;
+if (process.env.VITE_OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.VITE_OPENAI_API_KEY,
+  });
+}
 
 function validateWords(words) {
   // Skip validation - trust ChatGPT to use common words that are in GloVe
@@ -25,6 +28,11 @@ function validateWords(words) {
 }
 
 async function generateSinglePuzzle(puzzleNumber, difficulty) {
+  // If no API key, use fallback puzzles only
+  if (!process.env.VITE_OPENAI_API_KEY) {
+    return null; // This will trigger fallback usage
+  }
+
   const prompt = `Create a semantic word puzzle for a word embedding space game. 
 
 The user needs to guess where a target word belongs in semantic space based on reference words.
@@ -103,38 +111,116 @@ Make the relationships intuitive but not too obvious!`;
 }
 
 function getFallbackPuzzles() {
-  return [
+  // Expanded fallback puzzles to provide variety without API dependency
+  const puzzleBank = [
     {
-      id: 1,
       referenceWords: ["man", "woman", "computer", "king", "prince", "tree", "princess", "royal", "book"],
       targetWord: "queen",
       difficulty: "easy"
     },
     {
-      id: 2,
       referenceWords: ["tiny", "car", "small", "medium", "ocean", "large", "huge", "music", "gigantic"],
       targetWord: "big",
       difficulty: "easy"
     },
     {
-      id: 3,
       referenceWords: ["calm", "chair", "peaceful", "worried", "mountain", "anxious", "angry", "bread", "furious"],
       targetWord: "happy",
       difficulty: "medium"
     },
     {
-      id: 4,
       referenceWords: ["apple", "keyboard", "banana", "orange", "cloud", "grape", "strawberry", "phone", "cherry", "peach"],
       targetWord: "fruit",
       difficulty: "medium"
     },
     {
-      id: 5,
       referenceWords: ["past", "window", "present", "yesterday", "guitar", "today", "history", "cheese", "memory", "now"],
       targetWord: "future",
       difficulty: "hard"
+    },
+    {
+      referenceWords: ["cat", "dog", "mouse", "elephant", "bird", "computer", "lion", "tiger", "bear", "rabbit"],
+      targetWord: "animal",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["red", "blue", "green", "yellow", "purple", "table", "orange", "pink", "brown", "black"],
+      targetWord: "color",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["hot", "cold", "warm", "cool", "freezing", "music", "boiling", "ice", "fire", "snow"],
+      targetWord: "temperature",
+      difficulty: "medium"
+    },
+    {
+      referenceWords: ["run", "walk", "jump", "swim", "fly", "book", "drive", "climb", "dance", "sleep"],
+      targetWord: "move",
+      difficulty: "medium"
+    },
+    {
+      referenceWords: ["happy", "sad", "angry", "excited", "calm", "chair", "love", "fear", "joy", "hope"],
+      targetWord: "emotion",
+      difficulty: "medium"
+    },
+    {
+      referenceWords: ["car", "train", "airplane", "bicycle", "boat", "computer", "bus", "truck", "motorcycle", "ship"],
+      targetWord: "transport",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["computer", "phone", "internet", "software", "robot", "tree", "camera", "keyboard", "screen", "data"],
+      targetWord: "technology",
+      difficulty: "medium"
+    },
+    {
+      referenceWords: ["tree", "flower", "mountain", "ocean", "forest", "phone", "lake", "beach", "desert", "grass"],
+      targetWord: "nature",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["football", "basketball", "tennis", "golf", "swimming", "book", "running", "cycling", "hockey", "boxing"],
+      targetWord: "sport",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["shirt", "pants", "shoes", "hat", "dress", "computer", "jacket", "socks", "gloves", "coat"],
+      targetWord: "clothing",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["pizza", "bread", "cheese", "cake", "chocolate", "car", "coffee", "tea", "milk", "pasta"],
+      targetWord: "food",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["hand", "foot", "head", "eye", "ear", "computer", "nose", "mouth", "arm", "leg"],
+      targetWord: "body",
+      difficulty: "easy"
+    },
+    {
+      referenceWords: ["time", "space", "idea", "thought", "dream", "chair", "memory", "truth", "knowledge", "reality"],
+      targetWord: "concept",
+      difficulty: "hard"
+    },
+    {
+      referenceWords: ["morning", "afternoon", "evening", "night", "today", "phone", "yesterday", "tomorrow", "week", "month"],
+      targetWord: "time",
+      difficulty: "medium"
+    },
+    {
+      referenceWords: ["big", "small", "tall", "short", "fast", "tree", "slow", "hot", "cold", "loud"],
+      targetWord: "opposite",
+      difficulty: "hard"
     }
   ];
+
+  // Return 5 random puzzles from the bank
+  const shuffled = puzzleBank.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 5).map((puzzle, index) => ({
+    id: index + 1,
+    ...puzzle
+  }));
 }
 
 async function generateDailyPuzzles(date) {
@@ -200,9 +286,8 @@ async function main() {
   console.log('🧩 Starting puzzle generation...');
   
   if (!process.env.VITE_OPENAI_API_KEY) {
-    console.error('❌ VITE_OPENAI_API_KEY not found in environment variables');
-    console.log('Please add your OpenAI API key to the .env file');
-    process.exit(1);
+    console.log('⚠️  No OpenAI API key found - using fallback puzzles only');
+    console.log('This will generate basic puzzles without AI assistance');
   }
   
   const dates = getTestDates();
