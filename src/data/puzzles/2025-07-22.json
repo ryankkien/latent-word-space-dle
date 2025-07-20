@@ -1,0 +1,87 @@
+{
+  "date": "2025-07-22",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "water",
+        "sand",
+        "computer",
+        "forest",
+        "sun",
+        "moon"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "blue",
+        "bright",
+        "color",
+        "dark",
+        "dim",
+        "horizon",
+        "shade",
+        "light",
+        "table"
+      ],
+      "targetWord": "light",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "boat",
+        "cloud",
+        "fishing",
+        "sun",
+        "mountain",
+        "river",
+        "rock"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "circle",
+        "square",
+        "triangle",
+        "spiral",
+        "rectangle",
+        "pyramid",
+        "apple",
+        "geometry",
+        "banana"
+      ],
+      "targetWord": "shape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "dance",
+        "music",
+        "perform",
+        "book",
+        "stage",
+        "novel",
+        "rehearse"
+      ],
+      "targetWord": "play",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:53:30.415Z"
+}

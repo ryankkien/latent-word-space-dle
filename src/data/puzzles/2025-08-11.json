@@ -1,0 +1,88 @@
+{
+  "date": "2025-08-11",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "dream",
+        "reality",
+        "sleep",
+        "night",
+        "alarm",
+        "daydream",
+        "snooze",
+        "coffee",
+        "fantasy",
+        "mattress",
+        "sunshine"
+      ],
+      "targetWord": "sleep",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "desert",
+        "lake",
+        "forest",
+        "mountain",
+        "sandy",
+        "cloud",
+        "furniture"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "desert",
+        "symphony",
+        "forest",
+        "dune",
+        "concert",
+        "valley"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "flower",
+        "bloom",
+        "tree",
+        "garden",
+        "insect",
+        "rock",
+        "petal",
+        "soil",
+        "mountain"
+      ],
+      "targetWord": "plant",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "frost",
+        "banana",
+        "chill",
+        "ice",
+        "sweater",
+        "hotdog",
+        "cold",
+        "scarf",
+        "toast"
+      ],
+      "targetWord": "winter",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:56:35.983Z"
+}

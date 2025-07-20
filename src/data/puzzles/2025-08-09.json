@@ -1,0 +1,91 @@
+{
+  "date": "2025-08-09",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "glove",
+        "sock",
+        "hat",
+        "shoe",
+        "umbrella",
+        "jacket",
+        "carrot",
+        "scarf",
+        "broccoli"
+      ],
+      "targetWord": "clothing",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "forest",
+        "lake",
+        "sand",
+        "banana",
+        "rock",
+        "cliff"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "stream",
+        "desert",
+        "lake",
+        "pillow",
+        "valley",
+        "sand"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "rain",
+        "forest",
+        "sand",
+        "cloud",
+        "bicycle",
+        "apple"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "chill",
+        "cozy",
+        "sweater",
+        "fireplace",
+        "sunburn",
+        "breeze",
+        "scarf",
+        "ocean",
+        "computer",
+        "desert",
+        "snow",
+        "sand"
+      ],
+      "targetWord": "warmth",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:56:17.517Z"
+}

@@ -1,0 +1,89 @@
+{
+  "date": "2025-09-04",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "flute",
+        "drum",
+        "paint",
+        "music",
+        "symphony",
+        "brush",
+        "dance"
+      ],
+      "targetWord": "art",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "sky",
+        "sand",
+        "cloud",
+        "apple",
+        "forest",
+        "car",
+        "desk"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "bark",
+        "run",
+        "leaf",
+        "swim",
+        "branch",
+        "fly",
+        "cuddle",
+        "rock",
+        "grow"
+      ],
+      "targetWord": "tree",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "courage",
+        "fear",
+        "bravery",
+        "heroic",
+        "doubt",
+        "adventure",
+        "cowardice",
+        "exploration",
+        "relaxation",
+        "tension"
+      ],
+      "targetWord": "hero",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "grape",
+        "lemon",
+        "banana",
+        "apple",
+        "carrot",
+        "berry",
+        "tomato",
+        "orange",
+        "cucumber"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:00:20.624Z"
+}

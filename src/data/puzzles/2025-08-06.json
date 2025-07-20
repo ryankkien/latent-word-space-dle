@@ -1,0 +1,88 @@
+{
+  "date": "2025-08-06",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "bark",
+        "cat",
+        "meow",
+        "dog",
+        "purr",
+        "leaf",
+        "feline",
+        "tree",
+        "fetch",
+        "wood",
+        "whiskers"
+      ],
+      "targetWord": "animal",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "lake",
+        "river",
+        "desert",
+        "banana",
+        "forest",
+        "cactus",
+        "cloud"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "compress",
+        "expand",
+        "squeeze",
+        "inflate",
+        "flat",
+        "puff",
+        "deflate",
+        "crunch",
+        "linear"
+      ],
+      "targetWord": "volume",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "desert",
+        "lake",
+        "mountain",
+        "sand",
+        "forest",
+        "sky",
+        "grass"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "tornado",
+        "whirlwind",
+        "calm",
+        "storm",
+        "chaos",
+        "serenity",
+        "funnel",
+        "peace",
+        "hurricane"
+      ],
+      "targetWord": "wind",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:55:48.490Z"
+}

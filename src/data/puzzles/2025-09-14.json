@@ -1,0 +1,88 @@
+{
+  "date": "2025-09-14",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "lake",
+        "sky",
+        "mountain",
+        "rain",
+        "table",
+        "cloud",
+        "store"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "fruit",
+        "apple",
+        "banana",
+        "veggie",
+        "grape",
+        "carrot",
+        "berry",
+        "meat",
+        "salad"
+      ],
+      "targetWord": "food",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "forest",
+        "river",
+        "mountain",
+        "ocean",
+        "urban",
+        "desert",
+        "nature",
+        "tundra",
+        "building",
+        "city",
+        "lake"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "lava",
+        "lake",
+        "cactus",
+        "stream",
+        "desert",
+        "tree"
+      ],
+      "targetWord": "landform",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "mountain",
+        "river",
+        "ocean",
+        "tree",
+        "valley",
+        "bicycle",
+        "sky",
+        "desert",
+        "cloud"
+      ],
+      "targetWord": "landform",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:02:02.542Z"
+}

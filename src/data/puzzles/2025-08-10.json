@@ -1,0 +1,90 @@
+{
+  "date": "2025-08-10",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "apple",
+        "banana",
+        "grape",
+        "carrot",
+        "orange",
+        "rocket",
+        "peach",
+        "soda",
+        "berry"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "light",
+        "shade",
+        "color",
+        "dark",
+        "brightness",
+        "canvas",
+        "tint",
+        "pencil",
+        "black"
+      ],
+      "targetWord": "paint",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "mountain",
+        "navigate",
+        "island",
+        "sky",
+        "hike",
+        "storm",
+        "beach",
+        "cloud",
+        "river",
+        "explore"
+      ],
+      "targetWord": "adventure",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "wheat",
+        "sand",
+        "beach",
+        "flour",
+        "mountain",
+        "rice",
+        "wave",
+        "meadow"
+      ],
+      "targetWord": "grain",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "harmony",
+        "chaos",
+        "melody",
+        "dissonance",
+        "rhythm",
+        "tension",
+        "peace",
+        "conflict",
+        "symphony",
+        "clash"
+      ],
+      "targetWord": "music",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:56:26.683Z"
+}

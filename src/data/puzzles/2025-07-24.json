@@ -1,0 +1,90 @@
+{
+  "date": "2025-07-24",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "bicycle",
+        "stream",
+        "car",
+        "forest",
+        "road"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "cloud",
+        "sky",
+        "car",
+        "forest",
+        "airplane",
+        "lake"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "lake",
+        "mountain",
+        "blue",
+        "forest",
+        "sandy",
+        "valley",
+        "apple"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "journey",
+        "travel",
+        "destination",
+        "exploration",
+        "vacation",
+        "chair",
+        "adventure",
+        "road",
+        "furniture",
+        "plane"
+      ],
+      "targetWord": "trip",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "cautious",
+        "adventurous",
+        "risk",
+        "careful",
+        "explore",
+        "danger",
+        "calm",
+        "wild",
+        "safety",
+        "fear",
+        "journey",
+        "predictable"
+      ],
+      "targetWord": "risk",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:53:48.414Z"
+}

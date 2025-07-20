@@ -1,0 +1,86 @@
+{
+  "date": "2025-08-20",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "creativity",
+        "imagination",
+        "pencil",
+        "collaboration",
+        "canvas",
+        "sleeve",
+        "painting",
+        "brush",
+        "science"
+      ],
+      "targetWord": "art",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "pool",
+        "drink",
+        "lake",
+        "forest",
+        "juice",
+        "desert"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "cloud",
+        "sand",
+        "forest",
+        "bicycle"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "sugar",
+        "sour",
+        "bitter",
+        "sweet",
+        "caffeine",
+        "baking",
+        "flour",
+        "tart",
+        "ocean"
+      ],
+      "targetWord": "taste",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "desert",
+        "forest",
+        "flat",
+        "sky",
+        "smooth",
+        "curved"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:57:59.269Z"
+}

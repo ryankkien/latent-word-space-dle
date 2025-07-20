@@ -1,0 +1,88 @@
+{
+  "date": "2025-09-01",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "tall",
+        "short",
+        "building",
+        "sky",
+        "height",
+        "flat",
+        "mountain",
+        "city",
+        "river"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "sugar",
+        "bitter",
+        "sweet",
+        "spicy",
+        "salty",
+        "computer",
+        "tart",
+        "fruit",
+        "dance"
+      ],
+      "targetWord": "flavor",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "apple",
+        "banana",
+        "carrot",
+        "grape",
+        "orange",
+        "pasta",
+        "broccoli",
+        "peach",
+        "spoon"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "boat",
+        "waves",
+        "island",
+        "mountain",
+        "sky",
+        "river",
+        "forest"
+      ],
+      "targetWord": "nautical",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "oak",
+        "maple",
+        "conifer",
+        "leaf",
+        "bark",
+        "screwdriver",
+        "pine",
+        "tree",
+        "hammer",
+        "spruce",
+        "branch"
+      ],
+      "targetWord": "wood",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:59:50.420Z"
+}

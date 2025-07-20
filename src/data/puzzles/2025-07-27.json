@@ -1,0 +1,88 @@
+{
+  "date": "2025-07-27",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "loud",
+        "quiet",
+        "shout",
+        "silent",
+        "whisper",
+        "music",
+        "storm",
+        "calm",
+        "scream"
+      ],
+      "targetWord": "sound",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "sky",
+        "cloud",
+        "sand",
+        "piano"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "sky",
+        "forest",
+        "desert",
+        "planet",
+        "banana",
+        "star"
+      ],
+      "targetWord": "earth",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "cylinder",
+        "sphere",
+        "triangle",
+        "cube",
+        "octagon",
+        "bicycle",
+        "rectangle",
+        "hexagon",
+        "whale"
+      ],
+      "targetWord": "shape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "flame",
+        "ember",
+        "green",
+        "spark",
+        "burn",
+        "ice",
+        "snow",
+        "heat",
+        "candle",
+        "frost",
+        "chill"
+      ],
+      "targetWord": "fire",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:54:17.032Z"
+}

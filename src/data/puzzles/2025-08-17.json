@@ -1,0 +1,90 @@
+{
+  "date": "2025-08-17",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "car",
+        "speed",
+        "bicycle",
+        "journey",
+        "plane",
+        "snail",
+        "travel",
+        "rocket",
+        "ocean"
+      ],
+      "targetWord": "transportation",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "boat",
+        "sky",
+        "land",
+        "beach",
+        "cloud",
+        "paddle",
+        "forest",
+        "rock"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "feline",
+        "bark",
+        "cat",
+        "purr",
+        "pet",
+        "scream",
+        "dog",
+        "whiskers",
+        "cuddle",
+        "run"
+      ],
+      "targetWord": "cat",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "tropical",
+        "banana",
+        "apple",
+        "citrus",
+        "tart",
+        "desert",
+        "berry",
+        "melon",
+        "sour"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "forest",
+        "ocean",
+        "river",
+        "mountain",
+        "urban",
+        "desert",
+        "horizon",
+        "city",
+        "meadow",
+        "cloud",
+        "valley"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:57:31.239Z"
+}

@@ -1,0 +1,93 @@
+{
+  "date": "2025-08-29",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "winter",
+        "sun",
+        "snow",
+        "cold",
+        "heat",
+        "sweater",
+        "beach",
+        "rain",
+        "fire"
+      ],
+      "targetWord": "season",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "river",
+        "ocean",
+        "mountain",
+        "airplane",
+        "lake",
+        "cloud",
+        "forest",
+        "hiking",
+        "desert",
+        "train",
+        "beach",
+        "road"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ancient",
+        "modern",
+        "future",
+        "artifact",
+        "historical",
+        "fossil",
+        "digital",
+        "stone",
+        "cactus",
+        "cloud",
+        "river"
+      ],
+      "targetWord": "time",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "triangle",
+        "circle",
+        "square",
+        "octagon",
+        "rectangle",
+        "apple",
+        "geometry",
+        "banana",
+        "cube",
+        "fruit"
+      ],
+      "targetWord": "shape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "lake",
+        "ocean",
+        "river",
+        "mountain",
+        "sky",
+        "cloud",
+        "forest",
+        "sandal",
+        "moon",
+        "chair"
+      ],
+      "targetWord": "water",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:59:21.678Z"
+}

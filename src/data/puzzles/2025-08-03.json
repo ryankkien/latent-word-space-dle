@@ -1,0 +1,91 @@
+{
+  "date": "2025-08-03",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "kitchen",
+        "chef",
+        "delicious",
+        "bake",
+        "spicy",
+        "car",
+        "paint",
+        "recipe",
+        "flavor"
+      ],
+      "targetWord": "cooking",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "delicious",
+        "bitter",
+        "sweet",
+        "sour",
+        "sugar",
+        "apple",
+        "carrot",
+        "ocean",
+        "fruit",
+        "vegetable",
+        "cake"
+      ],
+      "targetWord": "taste",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "cylinder",
+        "square",
+        "triangle",
+        "circle",
+        "rectangle",
+        "apple",
+        "geometry",
+        "banana",
+        "shape"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "courage",
+        "bravery",
+        "fear",
+        "heroic",
+        "anxiety",
+        "cowardice",
+        "bold",
+        "valiant",
+        "timid"
+      ],
+      "targetWord": "fearlessness",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "serene",
+        "chaos",
+        "tranquil",
+        "storm",
+        "stillness",
+        "noise",
+        "quiet",
+        "harmony",
+        "dissonance",
+        "turbulence",
+        "calm",
+        "disarray"
+      ],
+      "targetWord": "peace",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:55:19.298Z"
+}

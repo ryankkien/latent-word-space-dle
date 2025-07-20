@@ -1,0 +1,87 @@
+{
+  "date": "2025-08-12",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "tall",
+        "buildings",
+        "short",
+        "city",
+        "funny",
+        "skyline",
+        "humor",
+        "architecture",
+        "structure",
+        "joke"
+      ],
+      "targetWord": "skyscraper",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "pasta",
+        "delicious",
+        "sour",
+        "sauce",
+        "sweet",
+        "bitter",
+        "cake",
+        "spicy",
+        "vegetable"
+      ],
+      "targetWord": "flavor",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "pencil",
+        "marker",
+        "paper",
+        "eraser",
+        "canvas",
+        "apple",
+        "brush",
+        "notebook",
+        "car"
+      ],
+      "targetWord": "drawing",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "tornado",
+        "calm",
+        "breeze",
+        "whirlwind",
+        "hurricane",
+        "still",
+        "storm",
+        "ocean",
+        "tranquil"
+      ],
+      "targetWord": "storm",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "whisper",
+        "loud",
+        "silent",
+        "breeze",
+        "scream",
+        "shout",
+        "calm",
+        "thunder",
+        "quiet"
+      ],
+      "targetWord": "sound",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:56:44.957Z"
+}

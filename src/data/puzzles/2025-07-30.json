@@ -1,0 +1,89 @@
+{
+  "date": "2025-07-30",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "car",
+        "bus",
+        "train",
+        "plane",
+        "bicycle",
+        "apple",
+        "motorcycle",
+        "grape",
+        "boat"
+      ],
+      "targetWord": "transportation",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "bark",
+        "tree",
+        "leaf",
+        "forest",
+        "root",
+        "rock",
+        "squirrel",
+        "sandwich",
+        "branch",
+        "flora"
+      ],
+      "targetWord": "wood",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "guitar",
+        "music",
+        "drum",
+        "paint",
+        "melody",
+        "canvas",
+        "symphony",
+        "color",
+        "note",
+        "sculpture",
+        "harmony"
+      ],
+      "targetWord": "art",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "swim",
+        "cat",
+        "fish",
+        "bird",
+        "pet",
+        "run",
+        "jump",
+        "water",
+        "tree"
+      ],
+      "targetWord": "aquatic",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "candle",
+        "glow",
+        "darkness",
+        "light",
+        "shadow",
+        "match",
+        "ocean",
+        "flame",
+        "whisper"
+      ],
+      "targetWord": "light",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:54:43.229Z"
+}

@@ -1,0 +1,92 @@
+{
+  "date": "2025-08-05",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "wind",
+        "boat",
+        "beach",
+        "cactus",
+        "river",
+        "island",
+        "sand"
+      ],
+      "targetWord": "sea",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "cloud",
+        "tree",
+        "sand",
+        "sky"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "lake",
+        "fish",
+        "river",
+        "mountain",
+        "sand",
+        "table",
+        "sky",
+        "island"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "pasta",
+        "baking",
+        "sauce",
+        "noodle",
+        "cooking",
+        "exercise",
+        "dough",
+        "seasoning",
+        "cardio",
+        "cake",
+        "stir",
+        "bread"
+      ],
+      "targetWord": "cuisine",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "puzzle",
+        "confusion",
+        "clarity",
+        "enigma",
+        "solution",
+        "mystery",
+        "light",
+        "shadow",
+        "question",
+        "answer",
+        "darkness",
+        "riddle"
+      ],
+      "targetWord": "solution",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:55:38.244Z"
+}

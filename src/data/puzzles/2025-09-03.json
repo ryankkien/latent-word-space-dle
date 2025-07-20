@@ -1,0 +1,89 @@
+{
+  "date": "2025-09-03",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "artist",
+        "canvas",
+        "paint",
+        "gallery",
+        "sculpture",
+        "book",
+        "brush",
+        "music",
+        "color"
+      ],
+      "targetWord": "art",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "forest",
+        "lake",
+        "sand",
+        "mountain",
+        "couch",
+        "chair",
+        "desktop",
+        "table"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "delicious",
+        "bitter",
+        "tasty",
+        "sour",
+        "flavor",
+        "computer",
+        "sweet",
+        "spicy",
+        "strawberry"
+      ],
+      "targetWord": "taste",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "piano",
+        "guitar",
+        "symphony",
+        "saxophone",
+        "paint",
+        "drum",
+        "opera",
+        "dance",
+        "apple",
+        "photograph"
+      ],
+      "targetWord": "music",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "sugar",
+        "bitter",
+        "chocolate",
+        "sweet",
+        "savory",
+        "flour",
+        "sour",
+        "spicy",
+        "cereal",
+        "umami"
+      ],
+      "targetWord": "taste",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:00:09.872Z"
+}

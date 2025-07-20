@@ -1,0 +1,91 @@
+{
+  "date": "2025-07-26",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "sky",
+        "sand",
+        "cloud",
+        "car",
+        "breeze",
+        "tree"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "dolphin",
+        "whale",
+        "shark",
+        "ocean",
+        "river",
+        "cat",
+        "seal",
+        "fish",
+        "tree"
+      ],
+      "targetWord": "marine",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "sky",
+        "sun",
+        "desert",
+        "cactus",
+        "cloud",
+        "forest",
+        "piano"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "blue",
+        "happy",
+        "sad",
+        "ocean",
+        "joyful",
+        "cloudy",
+        "sunny",
+        "music",
+        "green",
+        "weather",
+        "rain",
+        "piano"
+      ],
+      "targetWord": "emotion",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "wind",
+        "storm",
+        "anchor",
+        "mountain",
+        "boat",
+        "cloud",
+        "river"
+      ],
+      "targetWord": "navigation",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:54:06.020Z"
+}

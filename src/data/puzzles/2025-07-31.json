@@ -1,0 +1,92 @@
+{
+  "date": "2025-07-31",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "pasta",
+        "sauce",
+        "bread",
+        "fruit",
+        "dinner",
+        "spoon",
+        "computer",
+        "meal",
+        "chocolate"
+      ],
+      "targetWord": "food",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "lake",
+        "river",
+        "mountain",
+        "desert",
+        "sky",
+        "tree",
+        "cloud",
+        "sand"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "mountain",
+        "ocean",
+        "river",
+        "bright",
+        "forest",
+        "heavy",
+        "cloud",
+        "sunny",
+        "dark",
+        "lightning",
+        "storm",
+        "whale"
+      ],
+      "targetWord": "weather",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "fish",
+        "sky",
+        "sand",
+        "cloud",
+        "rain",
+        "tree"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "melody",
+        "harmony",
+        "dissonance",
+        "rhythm",
+        "scale",
+        "quiet",
+        "loud",
+        "painting",
+        "symphony",
+        "brush",
+        "canvas",
+        "note"
+      ],
+      "targetWord": "music",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:54:53.192Z"
+}

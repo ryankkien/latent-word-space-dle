@@ -1,0 +1,87 @@
+{
+  "date": "2025-07-19",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "sweet",
+        "sour",
+        "bitter",
+        "salty",
+        "apple",
+        "carrot",
+        "orange",
+        "blue",
+        "grape",
+        "cloud"
+      ],
+      "targetWord": "taste",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "sky",
+        "forest",
+        "desert",
+        "car",
+        "cloud",
+        "island"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "plane",
+        "wind",
+        "journey",
+        "mountain",
+        "travel",
+        "car",
+        "sky"
+      ],
+      "targetWord": "boat",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "shore",
+        "fish",
+        "sand",
+        "mountain",
+        "wave",
+        "sky",
+        "bird",
+        "moon"
+      ],
+      "targetWord": "beach",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "fish",
+        "sand",
+        "guitar",
+        "lake",
+        "sky",
+        "cloud"
+      ],
+      "targetWord": "water",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:53:03.413Z"
+}

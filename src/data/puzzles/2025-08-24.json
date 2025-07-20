@@ -1,0 +1,88 @@
+{
+  "date": "2025-08-24",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "lake",
+        "river",
+        "mountain",
+        "sky",
+        "sand",
+        "cloud",
+        "tree",
+        "car"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "sand",
+        "forest",
+        "cloud",
+        "city"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "pet",
+        "purr",
+        "bark",
+        "feline",
+        "tail",
+        "dog",
+        "fish",
+        "cage",
+        "carrot",
+        "basketball",
+        "leash"
+      ],
+      "targetWord": "cat",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "shout",
+        "whisper",
+        "scream",
+        "speak",
+        "silence",
+        "noise",
+        "echo",
+        "song",
+        "quiet"
+      ],
+      "targetWord": "volume",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "cooking",
+        "bake",
+        "pan",
+        "delicious",
+        "sauce",
+        "carpet",
+        "knives",
+        "plate",
+        "guitar"
+      ],
+      "targetWord": "kitchen",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:58:35.048Z"
+}

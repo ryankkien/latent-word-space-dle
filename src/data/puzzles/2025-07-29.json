@@ -1,0 +1,89 @@
+{
+  "date": "2025-07-29",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "flat",
+        "valley",
+        "sky",
+        "hill",
+        "road",
+        "tree"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "stream",
+        "bike",
+        "car",
+        "sail",
+        "forest"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "cat",
+        "dog",
+        "mouse",
+        "fish",
+        "hamster",
+        "pizza",
+        "turtle",
+        "salad",
+        "grass"
+      ],
+      "targetWord": "pet",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "speed",
+        "feline",
+        "purring",
+        "dog",
+        "whiskers",
+        "sluggish",
+        "fast",
+        "playful",
+        "car"
+      ],
+      "targetWord": "cat",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "forest",
+        "deer",
+        "mountain",
+        "river",
+        "thunder",
+        "city",
+        "ocean",
+        "wild",
+        "painting",
+        "nature",
+        "skyscraper",
+        "cloud"
+      ],
+      "targetWord": "wilderness",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:54:34.320Z"
+}

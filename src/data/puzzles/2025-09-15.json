@@ -1,0 +1,93 @@
+{
+  "date": "2025-09-15",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "shore",
+        "mountain",
+        "wave",
+        "sand",
+        "valley",
+        "sky",
+        "tide",
+        "cloud"
+      ],
+      "targetWord": "beach",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "sky",
+        "blue",
+        "apple",
+        "water",
+        "green",
+        "cloud",
+        "dog",
+        "fish",
+        "tree"
+      ],
+      "targetWord": "nature",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "bark",
+        "leaf",
+        "car",
+        "branch",
+        "trunk",
+        "flower",
+        "sky",
+        "grass",
+        "cloud"
+      ],
+      "targetWord": "tree",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "forest",
+        "desert",
+        "sand",
+        "sky",
+        "guitar",
+        "cloud",
+        "piano",
+        "lake",
+        "whistle"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "sweet",
+        "bitter",
+        "sour",
+        "sugar",
+        "savory",
+        "apple",
+        "music",
+        "plum",
+        "sound",
+        "citrus",
+        "joy",
+        "grape"
+      ],
+      "targetWord": "flavor",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:02:11.648Z"
+}

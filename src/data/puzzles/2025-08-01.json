@@ -1,0 +1,86 @@
+{
+  "date": "2025-08-01",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "sugar",
+        "bitter",
+        "sweet",
+        "salt",
+        "sour",
+        "carrot",
+        "spice",
+        "broccoli",
+        "fruit"
+      ],
+      "targetWord": "taste",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "forest",
+        "flat",
+        "sky",
+        "warmth"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "circle",
+        "triangle",
+        "sphere",
+        "rectangle",
+        "square",
+        "music",
+        "polygon",
+        "geometry",
+        "garden"
+      ],
+      "targetWord": "shape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "mountain",
+        "valley",
+        "river",
+        "ocean",
+        "desert",
+        "city",
+        "sky",
+        "forest",
+        "giraffe"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "crisp",
+        "soft",
+        "bitter",
+        "delightful",
+        "sweet",
+        "jelly",
+        "sour",
+        "gummy",
+        "hard"
+      ],
+      "targetWord": "texture",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:55:01.767Z"
+}

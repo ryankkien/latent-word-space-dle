@@ -1,0 +1,93 @@
+{
+  "date": "2025-08-14",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "drum",
+        "flute",
+        "harmony",
+        "food",
+        "paint",
+        "dance",
+        "canvas",
+        "note"
+      ],
+      "targetWord": "music",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "piano",
+        "flute",
+        "guitar",
+        "drum",
+        "paint",
+        "dance",
+        "music",
+        "skateboard",
+        "symphony",
+        "car",
+        "sculpture"
+      ],
+      "targetWord": "art",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "guitar",
+        "drums",
+        "melody",
+        "concert",
+        "paino",
+        "painting",
+        "music",
+        "sculpture",
+        "book",
+        "dance"
+      ],
+      "targetWord": "art",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "aquatic",
+        "desert",
+        "sky",
+        "lake",
+        "sand",
+        "tree"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "tall",
+        "breeze",
+        "windy",
+        "short",
+        "gale",
+        "height",
+        "mountain",
+        "bluster",
+        "flat",
+        "ocean",
+        "stormy",
+        "wave"
+      ],
+      "targetWord": "sky",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:57:02.811Z"
+}

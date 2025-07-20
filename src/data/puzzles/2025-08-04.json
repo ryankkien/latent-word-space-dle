@@ -1,0 +1,86 @@
+{
+  "date": "2025-08-04",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "wave",
+        "sky",
+        "tree",
+        "pyramid",
+        "fish",
+        "cloud"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "apple",
+        "banana",
+        "carrot",
+        "orange",
+        "fruit",
+        "vegetable",
+        "pear",
+        "grape",
+        "desk"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "guitar",
+        "melody",
+        "rhythm",
+        "drum",
+        "harmony",
+        "carpet",
+        "canvas",
+        "symphony",
+        "chair"
+      ],
+      "targetWord": "music",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "city",
+        "forest",
+        "desert",
+        "building",
+        "cloud"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "desert",
+        "waterfall",
+        "forest",
+        "sand",
+        "mountain",
+        "urban",
+        "island"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:55:28.329Z"
+}

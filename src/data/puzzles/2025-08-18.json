@@ -1,0 +1,91 @@
+{
+  "date": "2025-08-18",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "drum",
+        "saxophone",
+        "orchestra",
+        "apple",
+        "banana",
+        "music",
+        "cello",
+        "car",
+        "train"
+      ],
+      "targetWord": "instrument",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "lake",
+        "river",
+        "mountain",
+        "desert",
+        "blue",
+        "swimming",
+        "forest",
+        "sand"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "beach",
+        "library",
+        "forest",
+        "sand"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "feline",
+        "dog",
+        "carnivore",
+        "whiskers",
+        "purr",
+        "bark",
+        "bird",
+        "tail",
+        "meow"
+      ],
+      "targetWord": "cat",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "slice",
+        "crust",
+        "cake",
+        "bake",
+        "pastry",
+        "dance",
+        "frosting",
+        "bread",
+        "guitar",
+        "whisk",
+        "flour",
+        "music"
+      ],
+      "targetWord": "pie",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:57:41.101Z"
+}

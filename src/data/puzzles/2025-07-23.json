@@ -1,0 +1,90 @@
+{
+  "date": "2025-07-23",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "sweet",
+        "bitter",
+        "apple",
+        "orange",
+        "computer",
+        "sour",
+        "banana",
+        "grape",
+        "robot"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "painter",
+        "canvas",
+        "brush",
+        "sculpture",
+        "color",
+        "computer",
+        "music",
+        "drama",
+        "palette"
+      ],
+      "targetWord": "art",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "beach",
+        "sun",
+        "snow",
+        "swim",
+        "sand",
+        "mountain",
+        "wave",
+        "cold",
+        "umbrella"
+      ],
+      "targetWord": "summer",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "lake",
+        "desert",
+        "cloud",
+        "forest",
+        "sand",
+        "skyscraper",
+        "traffic"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "trophy",
+        "champion",
+        "defeat",
+        "medal",
+        "score",
+        "game",
+        "celebration",
+        "loser",
+        "exercise",
+        "movie",
+        "team",
+        "performance"
+      ],
+      "targetWord": "victory",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:53:39.094Z"
+}

@@ -1,0 +1,92 @@
+{
+  "date": "2025-09-16",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "grape",
+        "apple",
+        "carrot",
+        "banana",
+        "fruit",
+        "vegetable",
+        "orange",
+        "cucumber",
+        "berry"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "piano",
+        "guitar",
+        "violin",
+        "drum",
+        "microphone",
+        "apple",
+        "dance",
+        "saxophone",
+        "banana",
+        "singing"
+      ],
+      "targetWord": "music",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "sail",
+        "sunset",
+        "ocean",
+        "journey",
+        "horizon",
+        "mountain",
+        "cloud",
+        "sky",
+        "banana"
+      ],
+      "targetWord": "adventure",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "paint",
+        "drum",
+        "sculpt",
+        "canvas",
+        "dance",
+        "architecture",
+        "car",
+        "window",
+        "paper"
+      ],
+      "targetWord": "art",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "pyramid",
+        "rectangle",
+        "cube",
+        "triangle",
+        "cylinder",
+        "music",
+        "octagon",
+        "harmony",
+        "cat",
+        "ellipse",
+        "dog",
+        "shape"
+      ],
+      "targetWord": "geometry",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:02:20.974Z"
+}

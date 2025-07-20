@@ -1,0 +1,89 @@
+{
+  "date": "2025-08-27",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "warm",
+        "blanket",
+        "cold",
+        "comfort",
+        "pillow",
+        "storm",
+        "sofa",
+        "heat",
+        "umbrella"
+      ],
+      "targetWord": "cozy",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "wave",
+        "fish",
+        "boat",
+        "forest",
+        "river",
+        "desert",
+        "salmon",
+        "mountain"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "guitar",
+        "piano",
+        "drums",
+        "string",
+        "melody",
+        "symphony",
+        "banana",
+        "note",
+        "rock",
+        "jazz"
+      ],
+      "targetWord": "music",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "color",
+        "spectrum",
+        "shade",
+        "brightness",
+        "sour",
+        "tint",
+        "hue",
+        "sweet",
+        "tone",
+        "contrast"
+      ],
+      "targetWord": "taste",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "circular",
+        "triangle",
+        "ellipse",
+        "square",
+        "polygon",
+        "banana",
+        "rectangular",
+        "apple",
+        "geometry",
+        "onion"
+      ],
+      "targetWord": "shape",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:59:03.745Z"
+}

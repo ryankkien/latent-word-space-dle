@@ -1,0 +1,92 @@
+{
+  "date": "2025-08-15",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "sour",
+        "banana",
+        "sweet",
+        "grape",
+        "apple",
+        "building",
+        "bitter",
+        "orange",
+        "carrot"
+      ],
+      "targetWord": "fruit",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "electric",
+        "battery",
+        "circuit",
+        "guitar",
+        "plug",
+        "drum",
+        "voltage",
+        "singer",
+        "light",
+        "bass"
+      ],
+      "targetWord": "power",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "river",
+        "mountain",
+        "fish",
+        "sky",
+        "forest",
+        "bird",
+        "apple",
+        "lake",
+        "table",
+        "cloud"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "sky",
+        "desert",
+        "sugar",
+        "forest",
+        "rock",
+        "wind"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "silk",
+        "cotton",
+        "wool",
+        "plastic",
+        "flax",
+        "natural",
+        "nylon",
+        "sustainable",
+        "cereal",
+        "metal",
+        "wood",
+        "furniture"
+      ],
+      "targetWord": "fabric",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:57:11.978Z"
+}

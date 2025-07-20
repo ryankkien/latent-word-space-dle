@@ -6,7 +6,7 @@ import { selectTargetWord, selectReferenceWords } from '../utils/gameLogic';
 import { countWordsBetween, calculateDistance } from '../data/realWordEmbeddings';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Moon, Sun, Box, Square, Sparkles } from 'lucide-react';
+import { Moon, Sun, Box, Square, Sparkles, Share2 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/utils';
 import { useSound } from '../hooks/useSound';
@@ -63,6 +63,45 @@ export function Game() {
     
     // Play success sound after a short delay
     setTimeout(() => playSuccess(), 500);
+  };
+
+  const generateShareText = () => {
+    if (!gameState.isGameComplete || !gameState.targetWord) return '';
+    
+    const scoreEmoji = gameState.score > 80 ? '🎯' : gameState.score > 50 ? '✨' : '🎲';
+    const accuracyStars = '⭐'.repeat(Math.ceil(gameState.score / 20));
+    
+    return `🧠 Latent Word Space ${scoreEmoji}
+
+Word: "${gameState.targetWord.word}"
+${accuracyStars} ${gameState.score}% accuracy
+📏 ${gameState.wordsBetween} words between
+🎮 Mode: ${viewMode}
+
+Can you place words in semantic space? Play at: [Your URL]
+
+#LatentWordSpace #AI #WordEmbeddings`;
+  };
+
+  const handleShare = async () => {
+    const shareText = generateShareText();
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Latent Word Space - My Result',
+          text: shareText
+        });
+      } catch (err) {
+        // Fallback to clipboard
+        navigator.clipboard.writeText(shareText);
+      }
+    } else {
+      // Fallback to clipboard
+      navigator.clipboard.writeText(shareText);
+    }
+    
+    playSuccess();
   };
 
   return (
@@ -190,7 +229,16 @@ export function Game() {
                   <div className="text-sm text-muted-foreground">Distance</div>
                 </div>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center gap-3">
+                <Button
+                  onClick={handleShare}
+                  variant="outline"
+                  size="lg"
+                  className="transition-all duration-200 hover:scale-105"
+                >
+                  <Share2 className="mr-2 h-4 w-4" />
+                  Share Result
+                </Button>
                 <Button
                   onClick={startNewGame}
                   size="lg"
@@ -205,7 +253,7 @@ export function Game() {
         )}
 
         {/* Instructions */}
-        <Card>
+        <Card className="mb-6">
           <CardHeader>
             <CardTitle>How to Play</CardTitle>
           </CardHeader>
@@ -234,6 +282,48 @@ export function Game() {
                 </li>
               )}
             </ul>
+          </CardContent>
+        </Card>
+
+        {/* About the Game */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              🧠 About Latent Word Space
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-muted-foreground">
+            <p>
+              Welcome to a daily puzzle game that explores how AI understands language! Each day presents 
+              5 unique semantic challenges where you must place words in their correct positions based on 
+              <strong className="text-foreground"> meaningful patterns</strong>.
+            </p>
+            
+            <div className="bg-muted/50 p-4 rounded-lg">
+              <h4 className="font-semibold text-foreground mb-2">🎯 Daily Challenge</h4>
+              <p>
+                Every day you get 5 new puzzles with different themes - from royal hierarchies to temperature scales, 
+                emotional spectrums to category completions. Use the reference words to discover the pattern and 
+                find where the target word belongs!
+              </p>
+            </div>
+
+            <div className="bg-muted/50 p-4 rounded-lg">
+              <h4 className="font-semibold text-foreground mb-2">🤖 Powered by GloVe Embeddings</h4>
+              <p>
+                This game uses real <strong className="text-foreground">GloVe (Global Vectors for Word Representation)</strong> 
+                embeddings from Stanford University. These AI models learned semantic relationships by analyzing 
+                6 billion words of text from the internet.
+              </p>
+              <p className="mt-2">
+                Each puzzle is generated using <strong className="text-foreground">AI pattern recognition</strong> to create 
+                intuitive word relationship challenges that test your understanding of semantic space!
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm">
+              <span>Built with ❤️ using React, TypeScript, and OpenAI</span>
+            </div>
           </CardContent>
         </Card>
       </div>

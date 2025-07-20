@@ -1,69 +1,133 @@
-# React + TypeScript + Vite
+# LatentLetters - Daily Word Puzzles 🧠
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A daily word puzzle game where players place words in semantic space based on their meaning, powered by GloVe word embeddings.
 
-Currently, two official plugins are available:
+## 🎮 Game Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **5 Daily Puzzles**: New challenges every day at midnight
+- **Semantic Word Placement**: Place words based on meaning, not spelling
+- **Visual Feedback**: See how close your guess was with distance metrics
+- **Streak Counter**: Track consecutive days played
+- **Share Results**: Share your daily performance with friends
+- **Educational**: Learn about AI and word embeddings
 
-## Expanding the ESLint configuration
+## 🚀 Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/latent-letters.git
+cd latent-letters
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+# Install dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Set up environment (for local development only)
+cp .env.example .env
+# Add your OpenAI API key to .env if generating new puzzles
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Pre-deployment Checklist
+- [ ] Generate puzzles for 60+ days (see GENERATE_PUZZLES_INSTRUCTIONS.md)
+- [ ] Ensure `.env` is in `.gitignore`
+- [ ] Remove API keys from `.env` before committing
+- [ ] Handle large embeddings file (see DEPLOYMENT_GUIDE.md)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Deploy to Vercel
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy
+vercel
+
+# Follow the prompts
 ```
+
+### Deploy to Netlify
+1. Push to GitHub (without .env file)
+2. Connect repository to Netlify
+3. Deploy with default settings
+
+## 🏗️ Architecture
+
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Word Embeddings**: GloVe 50D vectors reduced to 3D
+- **Puzzles**: Pre-generated using OpenAI GPT-4
+- **Storage**: Local storage for game state
+- **Deployment**: Static site (no backend required)
+
+## 📁 Project Structure
+
+```
+latent-letters/
+├── src/
+│   ├── components/         # React components
+│   ├── data/              # Word embeddings and puzzles
+│   ├── services/          # Business logic
+│   ├── hooks/             # Custom React hooks
+│   └── types/             # TypeScript types
+├── scripts/               # Build and generation scripts
+├── public/                # Static assets
+└── docs/                  # Documentation
+```
+
+## 🔐 Security
+
+- API keys are only used locally for puzzle generation
+- Pre-generated puzzles contain no sensitive data
+- All game logic runs client-side
+- No user data is collected or stored externally
+
+## 🛠️ Development
+
+### Generate New Puzzles
+```bash
+# Add OpenAI API key to .env
+# Run generation script
+node scripts/generatePuzzles.mjs
+```
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Run Tests
+```bash
+npm test
+```
+
+## 📚 Documentation
+
+- [Deployment Guide](./DEPLOYMENT_GUIDE.md) - Handling large files and deployment
+- [Puzzle Generation](./GENERATE_PUZZLES_INSTRUCTIONS.md) - Creating new puzzles
+- [AdSense Setup](./ADSENSE_SETUP.md) - Monetization setup
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
+
+## 📄 License
+
+MIT License - feel free to use this project for your own purposes.
+
+## 🙏 Acknowledgments
+
+- GloVe word embeddings by Stanford NLP
+- OpenAI for puzzle generation
+- React and Vite communities

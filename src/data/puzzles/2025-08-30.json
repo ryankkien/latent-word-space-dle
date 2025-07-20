@@ -1,0 +1,86 @@
+{
+  "date": "2025-08-30",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "river",
+        "ocean",
+        "lake",
+        "mountain",
+        "forest",
+        "sky",
+        "sand",
+        "cloud",
+        "gravel"
+      ],
+      "targetWord": "water",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "sail",
+        "ocean",
+        "island",
+        "plane",
+        "beach",
+        "mountain",
+        "journey",
+        "desert",
+        "sunset"
+      ],
+      "targetWord": "travel",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "lake",
+        "mountain",
+        "river",
+        "sky",
+        "desert",
+        "cloud",
+        "sand",
+        "forest"
+      ],
+      "targetWord": "water",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "forest",
+        "desert",
+        "coffee",
+        "lake",
+        "sky",
+        "sand"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "sour",
+        "spicy",
+        "bitter",
+        "sweet",
+        "tart",
+        "fuzzy",
+        "crunchy",
+        "melon",
+        "smooth"
+      ],
+      "targetWord": "taste",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-19T23:59:32.191Z"
+}

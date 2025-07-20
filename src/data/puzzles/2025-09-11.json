@@ -1,0 +1,89 @@
+{
+  "date": "2025-09-11",
+  "puzzles": [
+    {
+      "id": 1,
+      "referenceWords": [
+        "joyful",
+        "sad",
+        "happy",
+        "grumpy",
+        "excited",
+        "sour",
+        "cheerful",
+        "bitter",
+        "bright"
+      ],
+      "targetWord": "emotion",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "desert",
+        "sky",
+        "pillow",
+        "forest",
+        "sand",
+        "table",
+        "cloud"
+      ],
+      "targetWord": "landscape",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "breeze",
+        "desert",
+        "whisper",
+        "forest",
+        "television",
+        "moon",
+        "symphony"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "referenceWords": [
+        "ocean",
+        "mountain",
+        "river",
+        "sky",
+        "tree",
+        "cloud",
+        "car",
+        "forest",
+        "computer"
+      ],
+      "targetWord": "nature",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "referenceWords": [
+        "calm",
+        "storm",
+        "tranquil",
+        "chaos",
+        "serene",
+        "disorder",
+        "peaceful",
+        "hurricane",
+        "quiet",
+        "ruckus"
+      ],
+      "targetWord": "turbulence",
+      "difficulty": "hard"
+    }
+  ],
+  "generated_at": "2025-07-20T00:01:33.333Z"
+}
